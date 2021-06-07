@@ -1,0 +1,216 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body::after {
+    content: "";
+    background-image: url('../FrontEnd/img/pexels-photo-1410138.jpeg');
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+
+.top{
+    padding: .7%;
+    text-align: right;
+    background: #245559;
+    color: white;
+}
+
+.top a{
+    text-decoration: none;
+    color: white;
+    font-size: 90%;
+    padding-left: 1%;
+}
+
+.top .log:hover{
+    text-decoration: underline;
+    font-size: 90%;
+}
+
+.top span{
+    padding-right: 70%;
+    font-size: 80%;
+}
+
+.top span i{
+    padding-left: 1%;
+}
+
+footer{
+    background-color: #245559;
+    position: fixed;
+    font-size: 80%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+footer span{
+    display: none;
+}
+
+.container img{
+    padding-left: 20%;
+    padding-right: 15%;
+}
+
+.nav ul {
+    display: inline-flex;
+    margin: 3%;
+}
+
+.nav ul li {
+    list-style: none;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    padding: 4%;
+}
+
+.nav ul li a {
+    color: green;
+    text-decoration: none;
+    font-size: 1.4em;
+}
+
+.nav ul li a:hover {
+    text-decoration: underline;
+    color: #245559;
+    
+}
+
+.nav ul li .fa-shopping-cart:hover{
+    text-decoration: none;
+}
+
+
+.nav ul li a:visited {
+    text-decoration: none;
+}
+
+sup{
+    padding: 10%;
+}
+
+/* form */
+.register{
+    background-color: #245559;
+    color: white;
+    padding: 2%;
+    width: 30%;
+    margin: auto;
+    border-radius: 20px;
+}
+
+input[type=text], input[type=password] {
+    width: 95%;
+    padding: 2.5%;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: white;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+  
+  .registerbtn {
+    background-color: white;
+    color: #245559;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .registerbtn:hover {
+    background-color: #ddd;
+  }
+  
+
+  .register a {
+    color: dodgerblue;
+  }
+
+  .register a:hover{
+    color: #ddd;
+  }
+  
+
+/* this is the mobile version */
+@media only screen and (max-width: 1800px) {
+    body::after {
+        opacity: 30%;
+    }
+    .top{
+        padding: 2%;
+    }
+    
+    .top a{
+        padding-left: 10%;
+    }
+
+    .top span{
+        display: none;
+    }
+    .top .fa-facebook{
+        display: none;
+    }
+
+    .top .fa-twitter{
+        display: none;
+    }
+
+    .top .fa-instagram{
+        display: none;
+    }
+
+    /* NAV */
+    .container img{
+        padding-left: 3%;
+    }
+    
+    .nav ul {
+        display: inline-flex;
+        margin: 5%;
+        padding: 3%;
+    }
+    
+    .nav ul li {
+        padding-left: 5%;
+        font-size: 120%;
+    }
+
+    .register{
+        padding: 3%;
+        width: 80%;
+
+    }
+    input[type=text], input[type=password] {
+        width: 90%;
+    }
+
+    footer span{
+        display: contents;
+        font-size: 70%;
+    }   
+
+}
