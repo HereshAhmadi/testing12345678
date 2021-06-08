@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/product")
 public class ProductController {
     
 
@@ -37,7 +37,7 @@ public class ProductController {
         
         if(productName != null && productName.length() > 0 ){
             try{
-               productService.addNewCustomer(new Product(productName, productDescription, productQuantity)); 
+               productService.addNewProduct(new Product(productName, productDescription, productQuantity)); 
                return "Product Added";
             }catch(Exception e){
                 return "Product ID already used";
