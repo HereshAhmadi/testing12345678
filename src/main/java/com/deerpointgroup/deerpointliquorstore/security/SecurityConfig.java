@@ -23,14 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests(a -> a
-                .antMatchers("/", "/error", "/customer", "/login", "/register", "/webjars/**").permitAll()
+                .antMatchers("/", "/error", "/customer", "/img/**", "/css/**", "/login", "/register", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
             )
             .oauth2Login()
-            .defaultSuccessUrl("/home")
+            .defaultSuccessUrl("/index")
             .failureUrl("/loginFailure");
     }
 }

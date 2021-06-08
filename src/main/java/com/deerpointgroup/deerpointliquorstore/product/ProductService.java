@@ -18,56 +18,56 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+    public List<Product> getProducts() {
+        return productRepository.findAll();
     }
     
     
-    public void addNewCustomer(Customer customer){
-       Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
+    public void addNewProduct(Product product){
+       Optional<Product> productOptional = productRepository.findProductByName(product.getProductName());
        
-       if(customerOptional.isPresent()){
-           throw new IllegalStateException("Email taken");
+       if(productOptional.isPresent()){
+           throw new IllegalStateException("Product already in database");
        }else{
-           customerRepository.save(customer);
+           productRepository.save(product);
        }
      }
     
     
     
-    public void deleteCustomer(long customerId){
-        boolean exists = customerRepository.existsById(customerId);
+    public void deleteProduct(long productId){
+        boolean exists = productRepository.existsById(productId);
         
        if(!exists){
-           throw new IllegalStateException("Customer with id" + customerId + " does not exist");
+           throw new IllegalStateException("Product with id" + productId + " does not exist");
        }
        
-       customerRepository.deleteById(customerId);
+       productRepository.deleteById(productId);
     }
     
     
     @Transactional
-    public void updateCustomer(long customerId, String name, String email){
-        boolean exists = customerRepository.existsById(customerId);
+    public void updateProduct(long productId, String name, String productDescription, int productQuantity){
+        boolean exists = productRepository.existsById(productId);
         
         if(!exists){
-            throw new IllegalStateException("Customer with " + customerId +" does not exists");
+            throw new IllegalStateException("Product with " + productId +" does not exists");
         }
         
-        Customer customer = customerRepository.getById(customerId);
+        Product product = productRepository.getById(productId);
         
-        if(name != null & name.equals(" ") && !Objects.equals(customer.getName(), name)){
-           customer.setName(name); 
+        if(name != null & name.equals(" ") && !Objects.equals(product.getProductName(), name)){
+           product.setProductName(name);
         }
         
-        if(email != null & email.equals(" ") && !Objects.equals(customer.getEmail(), email)){
+        if(name != null & name.equals(" ") && !Objects.equals(product.getProductName(), name)){
             
-            Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(email);
+            Optional<Product> productOptional = productRepository.findProductByName(name);
             
-                if(customerOptional.isPresent()){
-                    throw new IllegalStateException("Email taken");
+                if(productOptional.isPresent()){
+                    throw new IllegalStateException("Prodct already exists int he database");
                 }
-            customer.setEmail(email);
+            product.setProductName(name);
         }
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/product")
 public class ProductController {
     
 
@@ -51,13 +51,13 @@ public class ProductController {
     
     //Deleting a product
     @DeleteMapping(path = "{productID}")
-    public void deleteStudent(@PathVariable("productID") int productID ){
+    public void deleteProduct(@PathVariable("productID") int productID ){
         productService.deleteProduct(productID);
     }
     
     //for updating
     @PutMapping(path = "{productID}")
-    public void updateStudent(@PathVariable("productID") int productID,
+    public void updateProduct(@PathVariable("productID") int productID,
                               @RequestParam(required = false) String productName,
                               @RequestParam(required = false) String productDescription,
                               @RequestParam(required = false) int productQuantity){

@@ -21,16 +21,16 @@ import javax.persistence.Table;
 public class Product {
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "product_sequence",
+            sequenceName = "product_sequence",
             allocationSize = 1
     )
     
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "product_sequence"
     )
-    private int productID;
+    private long productID;
     private String productName;
     private String productDescription;
     private int productQuantity;
@@ -52,11 +52,11 @@ public class Product {
         this.productQuantity = productQuantity;
     }
 
-    public int getProductID() {
+    public long getProductID() {
         return productID;
     }
 
-    public void setProductID(int productID) {
+    public void setProductID(long productID) {
         this.productID = productID;
     }
 

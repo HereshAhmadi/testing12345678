@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 699785
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
     
 
