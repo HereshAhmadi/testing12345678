@@ -9,22 +9,13 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <h1>Hello</h1>
+        <h1>Welcome to our app, please login</h1>
 
-        <script type="text/javascript">
-
-            $.get("/username", function (data) {
-                const username = JSON.stringify(data);
-                $(".result").html(username.split(":")[1]);
-                alert(username.valueOf());
-            });
-        </script>
-        
         <div class="result">
-            
+            Login with Google: <a href="/oauth2/authorization/google">click here</a>
         </div>
+
     </body>
 </html>

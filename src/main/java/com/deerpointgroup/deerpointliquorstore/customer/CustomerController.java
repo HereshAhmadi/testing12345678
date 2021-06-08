@@ -40,17 +40,30 @@ public class CustomerController {
     }
     
     
-    @PostMapping
-    public void registerNewStudent(@RequestBody Customer customer){
-        customerService.addNewCustomer(customer);
-    }
-    
 //    @PostMapping
-//    public void registerNewStudent( @RequestParam(required = true) String name,
-//                                    @RequestParam(required = true) String password,
-//                                    @RequestParam(required = true) String email){
-//        customerService.addNewCustomer(new Customer(name, password, email));
+//    public void registerNewStudent(@RequestBody Customer customer){
+//        customerService.addNewCustomer(customer);
 //    }
+    
+    @PostMapping
+    public String registerNewCustomer( @RequestParam(required = true) String name,
+                                    @RequestParam(required = true) String password,
+                                    @RequestParam(required = true) String passwordRepeat,
+                                    @RequestParam(required = true) String email){
+        
+        if(password.equals(passwordRepeat)){
+            try{
+               customerService.addNewCustomer(new Customer(name, password, email)); 
+               return "Account Created";
+            }catch(Exception e){
+                return "Email already taken";
+            }
+            
+        }else{
+            return "Passwords do not match";
+        }
+        
+    }
     
     @DeleteMapping(path = "{customerId}")
     public void deleteStudent(@PathVariable("customerId") Long customerId ){
