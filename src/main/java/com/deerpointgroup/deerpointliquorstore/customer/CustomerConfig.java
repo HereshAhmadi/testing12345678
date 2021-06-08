@@ -24,7 +24,7 @@ public class CustomerConfig {
        
          Customer bob =  new Customer("bob","pass", "hello@gmail.com");
          
-         //repository.saveAll(List.of(heresh,bob));
+         repository.saveAll(List.of(heresh,bob));
 
         };
     }
