@@ -43,6 +43,11 @@ body::after {
     padding-left: 1%;
 }
 
+.register{
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
 footer{
     background-color: #245559;
     position: fixed;

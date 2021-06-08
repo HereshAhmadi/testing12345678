@@ -35,14 +35,24 @@ public class CustomerService {
     }
     
     
-    public void addNewCustomer(Customer customer){
+    public String addNewCustomer(String name, String password, String repeatPassword, String email){
+        
+        if(!password.equals(repeatPassword)){
+         
+            return "your password does not match";
+        }
+        
+       Customer customer = new Customer(name,password,email);
        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
        
        if(customerOptional.isPresent()){
-           throw new IllegalStateException("Email taken");
-       }else{
-           customerRepository.save(customer);
+           return "email taken";
        }
+          
+       
+       customerRepository.save(customer);
+       return "Account created";
+      
      }
     
     

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,17 +50,8 @@ public class CustomerController {
                                     @RequestParam(required = true) String passwordRepeat,
                                     @RequestParam(required = true) String email){
         
-        if(password.equals(passwordRepeat)){
-            try{
-               customerService.addNewCustomer(new Customer(name, password, email)); 
-               return "Account Created";
-            }catch(Exception e){
-                return "Email already taken";
-            }
-            
-        }else{
-            return "Passwords do not match";
-        }
+    return customerService.addNewCustomer(name, password,passwordRepeat, email); 
+  
         
     }
     
