@@ -35,7 +35,7 @@ body::after {
 }
 
 .top span{
-    padding-right: 70%;
+    padding-right: 60%;
     font-size: 80%;
 }
 
@@ -63,38 +63,37 @@ footer span{
     padding-right: 15%;
 }
 
-.nav ul {
+#nav ul {
     display: inline-flex;
     margin: 3%;
 }
 
-.nav ul li {
+#nav ul li {
     list-style: none;
-    position: relative;
     text-align: center;
     margin: 0 auto;
     color: white;
-    padding: 4%;
+    padding: 3.5%;
 }
 
-.nav ul li a {
+#nav ul li a {
     color: green;
     text-decoration: none;
     font-size: 1.4em;
 }
 
-.nav ul li a:hover {
+#nav ul li a:hover {
     text-decoration: underline;
     color: #245559;
     
 }
 
-.nav ul li .fa-shopping-cart:hover{
+#nav ul li .fa-shopping-cart:hover{
     text-decoration: none;
 }
 
 
-.nav ul li a:visited {
+#nav ul li a:visited {
     text-decoration: none;
 }
 
@@ -110,7 +109,6 @@ sup{
     width: 30%;
     margin: auto;
     border-radius: 20px;
-    padding-top: 20%;
 }
 
 input[type=text], input[type=password] {
@@ -154,10 +152,162 @@ input[type=text], input[type=password] {
   .register a:hover{
     color: #ddd;
   }
-  
+
+
+
+.register .fa{
+    text-decoration: none;
+    font-size: 200%;
+    padding-left: 5%;
+    color: white;
+}
+
+
+
+/* Title middle section */
+.middle{
+    text-align: center;
+    color: green;
+    padding-bottom: 10%;
+}
+
+.middle img{
+    width: 40%;
+}
+
+.midButton button{
+    background-color: white;
+    color: #245559;
+    padding: 1.5% 4%;
+    margin: 1% 1%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10%;
+}
+.service{
+    text-align: center;
+    background-color: #245559;
+    padding: 5%;
+    color: white;
+    font-size: 70%;
+    margin: 0;
+}
+
+.colMid{
+    columns: 100px 4;
+}
+
+.colMid h2{
+    margin: 0;
+}
+
+.colMid h2 i{
+    padding: 1%;
+    font-size: 300%;
+}
+
+/* Feature Section */
+.feature{
+    text-align: center;
+    background-color: white;
+    padding: 8%;
+}
+.cotentFeature{
+    columns: 5;
+}
+
+.cotentFeature img{
+    width: 40%;
+}
+
+.feature h1{
+    color: #245559;
+    font-size: 400%;
+}
+
+.feature h2{
+    color: green;
+}
+
+.feature h3{
+    font-size: 80%;
+}
+
+/* Following Nav bar */
+#navbar {
+    padding-left: 42%;
+    background-color: #245559;
+    position: fixed;
+    top: -10%;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
+}
+#navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 17px;
+}
+#navbar a:hover {
+    text-decoration: underline;
+}
+
+
+/* On sale section */
+.sale{
+    text-align: center;
+    background-color: #245559;
+    color: white;
+    padding: 10%;
+}
+
+.sale h1{
+    font-size: 400%;
+}
+
+.sale h2{
+    color: lightgreen;
+}
+
+.sale h3{
+    color: tan;
+    font-size: 80%;
+}
+
+.cotentSale{
+    columns: 5;
+}
+
+.cotentSale img{
+    width: 40%;
+}
+
+/* Detail section */
+.details{
+    text-align: center;
+    background-color: white;
+    padding: 10%;
+}
+
+.details h1{
+    color: #245559;
+}
+
+.details h2{
+    font-size: 100%;
+}
+
+.details h3{
+    font-size: 80%;
+}
+
 
 /* this is the mobile version */
-@media only screen and (max-width: 1800px) {
+@media only screen and (max-width: 1650px){
     body::after {
         opacity: 30%;
     }
@@ -189,13 +339,13 @@ input[type=text], input[type=password] {
         padding-left: 3%;
     }
     
-    .nav ul {
+    #nav ul {
         display: inline-flex;
         margin: 5%;
         padding: 3%;
     }
     
-    .nav ul li {
+    #nav ul li {
         padding-left: 5%;
         font-size: 120%;
     }
@@ -203,8 +353,8 @@ input[type=text], input[type=password] {
     .register{
         padding: 3%;
         width: 80%;
-
     }
+
     input[type=text], input[type=password] {
         width: 90%;
     }
@@ -214,4 +364,65 @@ input[type=text], input[type=password] {
         font-size: 70%;
     }   
 
+    footer .homefoot{
+        display: none;
+    }
+
+    .midButton button{
+        padding: 3% 7%;
+
+    }
+
+    #navbar {
+        padding-left: 20%;
+      }
+
+    .middle img{
+        width: 80%;
+    }
+
+    .service{
+        font-size: 50%;
+    }
+
+    .colMid h2 i{
+        font-size: 100%;
+    }
+    
+    .feature h1{
+        color: #245559;
+        font-size: 200%;
+    }
+    
+    .feature h2{
+        color: green;
+        font-size: 100%;
+    }
+    
+    .feature h3{
+        font-size: 50%;
+    }
+    .feature h4{
+        font-size: 50%;
+    }
+
+    .details{
+        text-align: center;
+        background-color: white;
+        padding: 10%;
+    }
+    
+    .details h1{
+        color: #245559;
+        font-size: 100%;
+
+    }
+    
+    .details h2{
+        font-size: 50%;
+    }
+    
+    .details h3{
+        font-size: 40%;
+    }
 }
