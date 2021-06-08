@@ -30,38 +30,39 @@ public class ProductController {
     }
     
     
-//    @PostMapping
-//    public String registerNewCustomer( @RequestParam(required = true) String name,
-//                                    @RequestParam(required = true) String password,
-//                                    @RequestParam(required = true) String passwordRepeat,
-//                                    @RequestParam(required = true) String email){
-//        
-//        if(password.equals(passwordRepeat)){
-//            try{
-//               customerService.addNewCustomer(new Customer(name, password, email)); 
-//               return "Account Created";
-//            }catch(Exception e){
-//                return "Email already taken";
-//            }
-//            
-//        }else{
-//            return "Passwords do not match";
-//        }
-//        
-//    }
-//    
-//    @DeleteMapping(path = "{customerId}")
-//    public void deleteStudent(@PathVariable("customerId") Long customerId ){
-//        customerService.deleteCustomer(customerId);
-//    }
-//    
-//    //for updating
-//    @PutMapping(path = "{customerId}")
-//    public void updateStudent(@PathVariable("customerId") long customerId,
-//                              @RequestParam(required = false) String name,
-//                              @RequestParam(required = false) String email){
-//        customerService.updateCustomer(customerId, name, email);
-//    }
+    @PostMapping
+    public String newProduct( @RequestParam(required = true) String productName,
+                                    @RequestParam(required = true) String productDescription,
+                                    @RequestParam(required = true) int productQuantity){
+        
+        if(productName != null && productName.length() > 0 ){
+            try{
+               productService.addNewCustomer(new Product(productName, productDescription, productQuantity)); 
+               return "Product Added";
+            }catch(Exception e){
+                return "Product ID already used";
+            }
+            
+        }else{
+            return "Passwords do not match";
+        }
+        
+    }
+    
+    //Deleting a product
+    @DeleteMapping(path = "{productID}")
+    public void deleteStudent(@PathVariable("productID") int productID ){
+        productService.deleteProduct(productID);
+    }
+    
+    //for updating
+    @PutMapping(path = "{productID}")
+    public void updateStudent(@PathVariable("productID") int productID,
+                              @RequestParam(required = false) String productName,
+                              @RequestParam(required = false) String productDescription,
+                              @RequestParam(required = false) int productQuantity){
+        productService.updateProduct(productID, productName, productDescription, productQuantity);
+    }
     
     
 }
