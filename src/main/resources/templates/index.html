@@ -12,43 +12,31 @@
 
         <div class="main">
             <div class="top">
-                <!-- social icons -->
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-twitter"></a>
-                <a href="#" class="fa fa-instagram"></a>
-                <!-- phone and email -->
-                <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+
+                <span class="menu-icons">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+                </span>
 
 
-                <script>
-                    $.get("/username", function (data) {
-                        const username = JSON.stringify(data);
-                        $(".username").html(username.split(":")[1]);
-                        alert(username.valueOf());
-                    });
-                </script>
-                <!-- this will pop up when they login -->
-                <div class="username"></div>
-                
-                <a class="log" href="login">Log in</a>
-                <a class="log" href="register">Sign up</a>
+                <span class="menu"> 
+                    <a href="login">Log in</a>
+                    <a href="register">Sign up</a>
+                    <a href="index">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Products</a>
+                    <a href="#">Cart</a>
+                </span>
             </div>
-            <div id="navbar">
-                <a href="index">Home</a>
-                <a href="#">About</a>
-                <a href="#">Products</a>
-                <a href="#">Cart</a>
-            </div>
+
             <div class="container"> 
+                
                 <div id="nav">
                     <img src="/img/logo.png" alt="logo">
-                    <ul>   
-                        <li><a href="index">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Cart<sup>3</sup></a></li>
-                    </ul>
                 </div>
+                
                 <!-- Middle Section -->
                 <div class="middle">
                     <img src="/img/mid.png" alt="logo">
