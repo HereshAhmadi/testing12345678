@@ -18,7 +18,7 @@ and open the template in the editor.
 
             $.get("/username", function (data) {
                 const username = JSON.stringify(data);
-                $(".result").html(username.split(":")[1]);
+                $(".result").html(username);
                 alert(username.valueOf());
             });
         </script>

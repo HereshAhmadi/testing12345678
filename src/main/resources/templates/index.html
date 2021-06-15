@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/css/design.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Deerpoint Liquor Store</title>
     </head>
     <body>
@@ -20,9 +21,26 @@
                     <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
                 </span>
 
+                <script>
+                    $.get("/username", function (data) {
+                        const username = JSON.stringify(data);
+
+                        if (!!username) {
+                            const usernameFormated = username.replace(/["]+/g, '');
+                            $(".menu").find(":first-child").remove();
+                            $(".menu").find(":first-child").remove();
+                            let logout = document.createElement("logout");
+                            logout.innerHTML = "<a href='logout'>logout</a>";
+                            $(".menu").append(logout);
+
+                            $(".menu").append("<h3 style='color: lightblue; padding-right: 2%;'>" + usernameFormated + "<h3>");
+                        }
+
+                    });
+                </script>
 
                 <span class="menu"> 
-                    <a href="login">Log in</a>
+                    <a href="login" id="login">Log in</a>
                     <a href="register">Sign up</a>
                     <a href="index">Home</a>
                     <a href="#">About</a>
@@ -31,12 +49,14 @@
                 </span>
             </div>
 
+
+
             <div class="container"> 
-                
+
                 <div id="nav">
                     <img src="/img/logo.png" alt="logo">
                 </div>
-                
+
                 <!-- Middle Section -->
                 <div class="middle">
                     <img src="/img/mid.png" alt="logo">
@@ -118,11 +138,12 @@
                 </div>
 
             </div>
-            <footer>
-                <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
-                <p>Copyright &copy; deerpointliquor</p>
-            </footer>
-        </div>
+        </div>      
+
+        <footer>
+            <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+            <p>Copyright &copy; deerpointliquor</p>
+        </footer>
         <script>
             // When the user scrolls down 20px from the top of the document, slide down the navbar
             window.onscroll = function () {
