@@ -5,9 +5,14 @@
  */
 package com.deerpointgroup.deerpointliquorstore.security;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,22 +20,29 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author 699785
  */
-@RestController
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .authorizeRequests(a -> a
-                .antMatchers("/", "/error", "/api/customer", "/img/**", "/css/**", "/login", "/register", "/index", "/webjars/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .exceptionHandling(e -> e
-                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-            )
-            .oauth2Login()
-            .defaultSuccessUrl("/index")
-            .failureUrl("/loginFailure");
+        http
+                .csrf().disable()
+                .authorizeRequests().antMatchers("/register**", "/index", "login", "/", "/css/**", "/img/**","/api/customer")
+                .permitAll().anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/index", true)
+                .permitAll()
+                .and()
+                .logout().invalidateHttpSession(true)
+                .clearAuthentication(true).permitAll();
     }
 }
