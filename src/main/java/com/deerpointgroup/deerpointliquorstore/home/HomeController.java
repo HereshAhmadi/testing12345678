@@ -5,45 +5,20 @@
  */
 package com.deerpointgroup.deerpointliquorstore.home;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- *
- * @author 699785
- */
-@Controller
-public class HomeController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String root() {
-        return "index";
-    }
-
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index() {
-        return "index";
-    }
+@Configuration
+public class HomeController implements WebMvcConfigurer {
     
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home() {
-        return "home";
-    }
-
-    @RequestMapping(value = "/viewCustomer", method = RequestMethod.GET)
-    public String viewCustomers() {
-        return "viewCustomer";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String helloWorld() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerUser() {
-        return "register";
-    }
-
+        @Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/index").setViewName("index");
+		registry.addViewController("/").setViewName("index");
+		registry.addViewController("/home").setViewName("home");
+		registry.addViewController("/login").setViewName("login");
+                registry.addViewController("/register").setViewName("register");
+	}
 }

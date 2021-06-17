@@ -5,20 +5,24 @@
  */
 package com.deerpointgroup.deerpointliquorstore.customer;
 
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
  * @author 699785
  */
 @Entity
-@Table
-public class Customer {
+@Table(name = "customer")
+public class Customer implements UserDetails{
     @Id
     @SequenceGenerator(
             name = "customer_sequence",
@@ -31,7 +35,7 @@ public class Customer {
             generator = "customer_sequence"
     )
     private Long id;
-    private String name;
+    private String username;
     
     private String email;
     private String password;
@@ -40,33 +44,14 @@ public class Customer {
         
     }
 
-    public Customer(Long id, String name, String password, String email) {
+    public Customer(String username, String password, String email) {
+        this.username = username;
         this.password = password;
-        this.id = id;
-        this.name = name;
-        this.email = email;
-    }
-
-    public Customer(String name, String password, String email) {
-        this.password = password;
-        this.name = name;
         this.email = email;
     }
 
     public Long getId() {
         return id;
-    }
-    
-    public void setPassword(String password){
-        this.password = password;
-    }
-    
-    public String getPassword(){
-        return password;
-    }
-
-    public String getName() {
-        return name;
     }
 
 
@@ -78,8 +63,8 @@ public class Customer {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 
@@ -89,6 +74,41 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name +  ",password" + password +", email=" + email + '}';
+        return "Student{" + "id=" + id + ", name=" + username  + ", email=" + email + '}';
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(() -> "read");
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

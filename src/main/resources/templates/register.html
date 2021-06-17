@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/css/design.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Deerpoint Liquor Store</title>
     </head>
     <body>
@@ -37,8 +38,16 @@
                 </div>
 
                 <div class="register">
-                    <form action="/api/customer" method="POST">
+<!--                    <script>
+                        let searchParameters = window.location.href;
+                        $.urlParam('param1'); // name
+                         $("#result").html(getParm.get("error"));
+                    </script>-->
+
+
+<form id="register" action="/api/customer"  method="POST" target="here">
                         <h1>Register</h1>
+                        <h1 id="result"></h1>
                         <span>Fill the form to create an account</span>
 
                         <label for="text"><b>Name</b></label>
