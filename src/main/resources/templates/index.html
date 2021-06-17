@@ -22,27 +22,11 @@
                     <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
                 </span>
 
-                <!--                <script>
-                                    $.get("/username", function (data) {
-                                        const username = JSON.stringify(data);
-                
-                                        if (!!username) {
-                                            const usernameFormated = username.replace(/["]+/g, '');
-                                            $(".menu").find(":first-child").remove();
-                                            $(".menu").find(":first-child").remove();
-                                            let logout = document.createElement("logout");
-                                            logout.innerHTML = "<a href='logout'>logout</a>";
-                                            $(".menu").append(logout);
-                
-                                            $(".menu").append("<h3 style='color: lightblue; padding-right: 2%;'>" + usernameFormated + "<h3>");
-                                        }
-                
-                                    });
-                                </script>-->
+  
 
                 <span class="menu"> 
                     
-                    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+                    <h1 th:inline="text"> [[${#httpServletRequest.remoteUser}]]</h1>
                     <form th:action="@{/logout}" method="post">
                         <input type="submit" value="Sign Out"/>
                     </form>

@@ -52,6 +52,8 @@ public class CustomerService implements UserDetailsService {
         
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
+        
+        
         Customer customer = new Customer(name, password, email);
         Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
 

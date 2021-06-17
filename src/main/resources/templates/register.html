@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="/css/design.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,16 +38,12 @@
                 </div>
 
                 <div class="register">
-<!--                    <script>
-                        let searchParameters = window.location.href;
-                        $.urlParam('param1'); // name
-                         $("#result").html(getParm.get("error"));
-                    </script>-->
 
 
-<form id="register" action="/api/customer"  method="POST" target="here">
+                    <h1 id="result" style="color: red;" ></h1>
+                    <form id="register" action="/api/customer"  method="POST" target="here">
                         <h1>Register</h1>
-                        <h1 id="result"></h1>
+
                         <span>Fill the form to create an account</span>
 
                         <label for="text"><b>Name</b></label>
@@ -64,6 +60,13 @@
 
                         <button type="submit" class="registerbtn">Register</button>
                     </form>
+
+                    <script>
+                        const urlSearchParams = new URLSearchParams(window.location.search);
+                        const params = Object.fromEntries(urlSearchParams.entries());
+                        var rs = params.error;
+                        document.getElementById("result").innerHTML = rs;
+                    </script>
                 </div>
 
             </div>
@@ -73,5 +76,11 @@
             <span><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
             <p>Copyright &copy; deerpointliquor</p>
         </footer>
+
+
     </body>
 </html>
+
+
+
+
