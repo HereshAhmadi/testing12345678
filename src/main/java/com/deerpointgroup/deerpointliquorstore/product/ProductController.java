@@ -26,18 +26,19 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getProducts(){
-        return productService.getProducts();
+        return productService.getAllProducts();
     }
     
     
     @PostMapping
     public String newProduct( @RequestParam(required = true) String productName,
                                     @RequestParam(required = true) String productDescription,
-                                    @RequestParam(required = true) int productQuantity){
+                                    @RequestParam(required = true) int productQuantity,
+                                    @RequestParam(required = true) double productPrice){
         
         if(productName != null && productName.length() > 0 ){
             try{
-               productService.addNewProduct(new Product(productName, productDescription, productQuantity)); 
+               productService.addNewProduct(new Product(productName, productDescription, productQuantity, productPrice)); 
                return "Product Added";
             }catch(Exception e){
                 return "Product ID already used";
@@ -60,9 +61,14 @@ public class ProductController {
     public void updateProduct(@PathVariable("productID") int productID,
                               @RequestParam(required = false) String productName,
                               @RequestParam(required = false) String productDescription,
-                              @RequestParam(required = false) int productQuantity){
-        productService.updateProduct(productID, productName, productDescription, productQuantity);
+                              @RequestParam(required = false) int productQuantity,
+                              @RequestParam(required = false) double productPrice){
+        productService.updateProduct(productID, productName, productDescription, productQuantity, productPrice);
     }
     
+//    public void getAllProducts(){
+//        productService.getAllProducts();
+//        
+//    }
     
 }

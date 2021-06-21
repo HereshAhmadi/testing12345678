@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.deerpointgroup.deerpointliquorstore.product;
 
 import javax.persistence.Entity;
@@ -12,10 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-/**
- *
- * @author 699785
- */
 @Entity
 @Table
 public class Product {
@@ -33,23 +24,27 @@ public class Product {
     private long productID;
     private String productName;
     private String productDescription;
+    //private String productCategory;
     private int productQuantity;
+    private double productPrice;
+    //private int quantitySold;
     
     public Product(){
-        
     }
 
-    public Product(int productID, String productName, String productDescription, int productQuantity) {
+    public Product(int productID, String productName, String productDescription, int productQuantity, double productPrice) {
         this.productID = productID;
         this.productName = productName;
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
     }
 
-    public Product(String productName, String productDescription, int productQuantity) {
+    public Product(String productName, String productDescription, int productQuantity, double productPrice) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
     }
 
     public long getProductID() {
@@ -84,10 +79,17 @@ public class Product {
         this.productQuantity = productQuantity;
     }
 
+    public double getProductPrice() {
+        return productPrice;
+    }
 
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
 
+    
     @Override
     public String toString() {
-        return "Product{" + "productID=" + productID + ", productName=" + productName +  ",productDescription" + productDescription +", productQuantity=" + productQuantity + '}';
+        return "Product{" + "productID=" + productID + ", productName=" + productName +  ",productDescription" + productDescription +", productQuantity=" + productQuantity + ", productPrice=" + productPrice + '}';
     }
 }

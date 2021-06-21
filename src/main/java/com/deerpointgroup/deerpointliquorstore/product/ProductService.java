@@ -47,7 +47,7 @@ public class ProductService {
     
     
     @Transactional
-    public void updateProduct(long productId, String name, String productDescription, int productQuantity){
+    public void updateProduct(long productId, String name, String productDescription, int productQuantity, double productPrice){
         boolean exists = productRepository.existsById(productId);
         
         if(!exists){
@@ -65,9 +65,13 @@ public class ProductService {
             Optional<Product> productOptional = productRepository.findProductByName(name);
             
                 if(productOptional.isPresent()){
-                    throw new IllegalStateException("Prodct already exists int he database");
+                    throw new IllegalStateException("Product already exists in the database");
                 }
             product.setProductName(name);
         }
+    }
+    
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 }
