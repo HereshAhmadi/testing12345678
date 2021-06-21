@@ -47,14 +47,14 @@
                 
         <script>
             $.get("/api/product", function (data) {
-                $(".result").html(data);
+                $(".cotentFeature").html(data);
                 const products = JSON.stringify(data);
                 const productObject = JSON.parse(products);
 
                 for (let i = 0; i < productObject.length; i++) {
                     let productName = productObject[i].productName + ".png";
 
-                    $('#lg').prepend("<img src='/img/" + productName + "'" + "/>");
+                    $('.feature').prepend("<img src='/img/" + productName + "'" + "/>");
                 }
 
                 document.getElementById("result").innerHTML = products.toString();
