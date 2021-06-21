@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+        <script>
+            $.get("/api/product", function (data) {
+                $(".result").html(data);
+                const products = JSON.stringify(data);
+                const productObject = JSON.parse(products);
+
+                for (let i = 0; i < productObject.length; i++) {
+                    let productName = productObject[i].productName + ".png";
+
+                    $('#lg').prepend("<img src='/img/" + productName + "'" + "/>");
+                }
+
+                document.getElementById("result").innerHTML = products.toString();
+            });
+        </script>
+
+        <div id="result">
+
+        </div>
+
+        <div id="lg">
+
+        </div>
+    </body>
+</html>

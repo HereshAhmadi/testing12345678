@@ -7,10 +7,7 @@ package com.deerpointgroup.deerpointliquorstore.customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,25 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/customer")
-public class CustomerController {
+public class CustomerRestController {
 
     private final CustomerService customerService;
 
     @Autowired
-    public CustomerController(CustomerService customerService) {
+    public CustomerRestController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
     @PostMapping
-    public void registerNewCustomer(HttpServletResponse response, @RequestParam(required = true) String name,
+    public String registerNewCustomer(@RequestParam(required = true) String name,
             @RequestParam(required = true) String password,
             @RequestParam(required = true) String passwordRepeat,
             @RequestParam(required = true) String email) throws IOException, ServletException {
 
         String result = customerService.addNewCustomer(name, password, passwordRepeat, email);
-        
-        result = "/register?error=" + result;
-        response.sendRedirect(result);
+        return result;
     }
 
 }

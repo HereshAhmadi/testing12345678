@@ -43,6 +43,28 @@
 
 
             <div class="container"> 
+                
+                
+        <script>
+            $.get("/api/product", function (data) {
+                $(".result").html(data);
+                const products = JSON.stringify(data);
+                const productObject = JSON.parse(products);
+
+                for (let i = 0; i < productObject.length; i++) {
+                    let productName = productObject[i].productName + ".png";
+
+                    $('#lg').prepend("<img src='/img/" + productName + "'" + "/>");
+                }
+
+                document.getElementById("result").innerHTML = products.toString();
+            });
+            
+        </script>
+                
+            <div id="result">
+            
+            </div>
 
                 <div id="nav">
                     <img src="/img/logo.png" alt="logo">

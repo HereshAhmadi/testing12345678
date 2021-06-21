@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,10 +43,22 @@
                 </div>
 
                 <div class="register">
+                    <script>
+                        function register() {
+                            $.post("/api/customer", {
+                                name: $("#name").val(),
+                                password: $("#password").val(),
+                                passwordRepeat: $("#passwordRepeat").val(),
+                                email: $("#email").val()
+                            }).done(function (data) {
+                                 document.getElementById("result").innerHTML = data;
+                            });
+                        }
+                    </script>
 
 
                     <h1 id="result" style="color: red;" ></h1>
-                    <form id="register" action="/api/customer"  method="POST" target="here">
+                    <div id="register">
                         <h1>Register</h1>
 
                         <span>Fill the form to create an account</span>
@@ -58,15 +75,8 @@
                         <label for="passwordRepeat"><b>Repeat Password</b></label>
                         <input type="password" placeholder="Repeat Password" name="passwordRepeat" id="passwordRepeat" required>
 
-                        <button type="submit" class="registerbtn">Register</button>
-                    </form>
-
-                    <script>
-                        const urlSearchParams = new URLSearchParams(window.location.search);
-                        const params = Object.fromEntries(urlSearchParams.entries());
-                        var rs = params.error;
-                        document.getElementById("result").innerHTML = rs;
-                    </script>
+                        <button class="registerbtn" onclick="register()">Register</button>
+                    </div>
                 </div>
 
             </div>
