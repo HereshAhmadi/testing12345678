@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.deerpointgroup</groupId>
-    <artifactId>deerpointliquorstore</artifactId>
+    <artifactId>deerpointliquorstore1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>deerpointliquorstore</name>
+    <name>deerpointliquorstore1</name>
     <description>Capstone project for DeerPoint LiquorStore</description>
     <properties>
         <java.version>16</java.version>

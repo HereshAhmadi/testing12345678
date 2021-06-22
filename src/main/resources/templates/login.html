@@ -23,12 +23,11 @@
 
 
                 <span class="menu"> 
-                    <a href="login">Log in</a>
-                    <a href="register">Sign up</a>
                     <a href="index">Home</a>
                     <a href="#">About</a>
                     <a href="#">Products</a>
-                    <a href="#">Cart</a>
+                    <a href="login">Log in</a>
+                    <a href="register">Sign up</a>
                 </span>
             </div>
             <div class="container"> 
@@ -38,23 +37,27 @@
 
                 <div class="register">
                     <div th:if="${param.error}">
-                        Invalid username and password.
+                        <h1 style="color: red">Invalid username and password.</h1>
                     </div>
                     <div th:if="${param.logout}">
-                        You have been logged out.
+                        <h1 style="color: red">You have been logged out.</h1>
                     </div>
+                    <h1>Login</h1>
+                    <span>Fill the form to login</span>
+                    <br><br><br>
                     <form th:action="@{/login}" method="post">
                         <div><label> User Name : <input type="text" name="username"/> </label></div>
                         <div><label> Password: <input type="password" name="password"/> </label></div>
-                        <div><input type="submit" value="Sign In"/></div>
+                        <div><input class="registerbtn" type="submit" value="Sign In"/></div>
                     </form>
+                    <br>
                 </div>
             </div>
         </div>
-
+        <br><br><br><br><br>
         <footer>
-            <span><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
             <p>Copyright &copy; deerpointliquor</p>
         </footer>
+        
     </body>
 </html>
