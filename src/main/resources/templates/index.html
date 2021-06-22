@@ -25,14 +25,12 @@
 
                 <span class="menu"> 
                     <script>
-                        $.get("/api/customer", function (data) {
+                        $.get("/api/user/username", function (data) {
                         if (data || data.length > 0) {
                         document.getElementById("username").innerHTML = data;
                         $("#login").remove();
                         $("#register").remove();
-                        $(".menu").append(
-                        '<a href="/logout" id="logout">Logout</a>' 
-                        );
+                        $(".menu").append('<a href="/logout" id="logout">Logout</a>');
                         } else {
                         $("#logout").remove();
                         $("#cart").remove();
