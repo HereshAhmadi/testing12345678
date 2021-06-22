@@ -3,173 +3,182 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/design.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <title>Deerpoint Liquor Store</title>
-    </head>
-    <body>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" type="text/css" href="/css/design.css">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                            <title>Deerpoint Liquor Store</title>
+                            </head>
+                            <body>
 
-        <div class="main">
-            <div class="top">
+                                <div class="main">
+                                    <div class="top">
 
-                <span class="menu-icons">
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-instagram"></a>
-                    <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
-                </span>
-
-  
-
-                <span class="menu"> 
-                    
-                    <h1 th:inline="text"> [[${#httpServletRequest.remoteUser}]]</h1>
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" value="Sign Out"/>
-                    </form>
-                    
-                    <a href="login" id="login">Log in</a>
-                    <a href="register">Sign up</a>
-                    <a href="index">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Products</a>
-                    <a href="#">Cart</a>
-                </span>
-            </div>
+                                        <span class="menu-icons">
+                                            <a href="#" class="fa fa-facebook"></a>
+                                            <a href="#" class="fa fa-twitter"></a>
+                                            <a href="#" class="fa fa-instagram"></a>
+                                            <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+                                        </span>
 
 
 
-            <div class="container"> 
-                
-                
-        <script>
-            $.get("/api/product", function (data) {
-                $(".cotentFeature").html(data);
-                const products = JSON.stringify(data);
-                const productObject = JSON.parse(products);
+                                        <span class="menu"> 
 
-                for (let i = 0; i < productObject.length; i++) {
-                    let productName = productObject[i].productName + ".png";
+                                            <script>
+                                                $.get("/api/customer", function (data) {
+                                                //   $(".cotentFeature").html(data);
+                                                if (data || data.length > 0) {
+                                                document.getElementById("username").innerHTML = data;
+                                                $(".menu").append(
+                                                        '<form id="logout" action="/logout" method="post">' + 
+                                                        '<input type="submit" value="Sign Out"/>' +
+                                                        '</form>'
+                                                 );
+                                                } else {
+                                                $("#logout").show();
+                                                }
+                                                console.log(data);
+                                                });
+                                            </script>
+                                            <h1 id ="username"></h1>
 
-                    $('.feature').prepend("<img src='/img/" + productName + "'" + "/>");
-                }
+                                            <a href="login" id="login">Log in</a>
+                                            <a href="register">Sign up</a>
+                                            <a href="index">Home</a>
+                                            <a href="#">About</a>
+                                            <a href="#">Products</a>
+                                            <a href="#">Cart</a>
+                                        </span>
+                                    </div>
 
-                document.getElementById("result").innerHTML = products.toString();
-            });
-            
-        </script>
-                
-            <div id="result">
-            
-            </div>
 
-                <div id="nav">
-                    <img src="/img/logo.png" alt="logo">
-                </div>
 
-                <!-- Middle Section -->
-                <div class="middle">
-                    <img src="/img/mid.png" alt="logo">
-                    <div class="midButton">
-                        <button style="background-color: #245559; color: white;">Shop Now</button><button>Read more</button>
-                    </div>
-                </div>
-                <!-- Middle Section -->
-                <div class="service">
-                    <div class="colMid">
-                        <h2><i class="fa fa-phone"></i>Online Support</h2>
-                        <h2><i class="fa fa-automobile"></i>Curbside Pickup</h2>
-                        <h2><i class="fa fa-handshake-o"></i>Easy Refunds</h2>
-                        <h2><i class="fa fa-truck"></i>Delivery</h2>
-                    </div>
-                </div>
-                <div class="feature">
-                    <h1>Featured Items</h1>
-                    <br>
-                    <div class="cotentFeature">
-                        <img src="/img/sauvignon-blanc.de78c9e.png" alt="logo">
-                        <h2>Kim Crowford</h2>
-                        <h4>Sauvignon Blanc</h4>
-                        <h3>$19.99</h3>
-                        <img src="/img/longshot-cabernet-bottle.png" alt="logo" style="width: 19%;">
-                        <h2>Long Shot</h2>
-                        <h4>Carbenet Sauvignon</h4>
-                        <h3>$16.99</h3>
-                        <img src="/img/12383264-1_1580663722.png" alt="logo" style="width: 50%;">
-                        <h2>Beringer</h2>
-                        <h4>Carbenet Sauvignon</h4>
-                        <h3>$9.99</h3>
-                        <img src="/img/5a601bef-e7d9-4ca4-9310-7dc59be3d66b_0_400.png" alt="logo" style="width: 25%;">
-                        <h2>Terermana</h2>
-                        <h4>Tequila</h4>
-                        <h3>$26.99</h3>
-                        <img src="/img/14404701-1_1582145735.png" alt="logo" style="width: 50%;">
-                        <h2>Pink Whitney</h2>
-                        <h4>Vodka</h4>
-                        <h3>$29.99</h3>
-                    </div>
+                                    <div class="container"> 
 
-                </div>
 
-                <div class="sale">
-                    <h1>On Sale Items</h1>
-                    <br>
-                    <div class="cotentSale">
-                        <img src="/img/sauvignon-blanc.de78c9e.png" alt="logo">
-                        <h2>Kim Crowford</h2>
-                        <h4>Sauvignon Blanc</h4>
-                        <h3><span style="text-decoration: line-through;">$22.99</span> &rarr; $19.99</h3>
-                        <img src="/img/longshot-cabernet-bottle.png" alt="logo" style="width: 19%;">
-                        <h2>Long Shot</h2>
-                        <h4>Carbenet Sauvignon</h4>
-                        <h3><span style="text-decoration: line-through;">$19.99</span> &rarr; $16.99</h3>
-                        <img src="/img/12383264-1_1580663722.png" alt="logo" style="width: 50%;">
-                        <h2>Beringer</h2>
-                        <h4>Carbenet Sauvignon</h4>
-                        <h3><span style="text-decoration: line-through;">$15.99</span> &rarr; $9.99</h3>
-                        <img src="/img/5a601bef-e7d9-4ca4-9310-7dc59be3d66b_0_400.png" alt="logo" style="width: 25%;">
-                        <h2>Terermana</h2>
-                        <h4>Tequila</h4>
-                        <h3><span style="text-decoration: line-through;">$31.99</span> &rarr; $26.99</h3>
-                        <img src="/img/14404701-1_1582145735.png" alt="logo" style="width: 50%;">
-                        <h2>Pink Whitney</h2>
-                        <h4>Vodka</h4>
-                        <h3><span style="text-decoration: line-through;">$36.99</span> &rarr; $29.99</h3>
-                    </div>
-                </div>
+                                        <script>
+                                            $.get("/api/product", function (data) {
+                                            $(".cotentFeature").html(data);
+                                            const products = JSON.stringify(data);
+                                            const productObject = JSON.parse(products);
+                                            for (let i = 0; i < productObject.length; i++) {
+                                            let productName = productObject[i].productName + ".png";
+                                            $('.feature').prepend("<img src='/img/" + productName + "'" + "/>");
+                                            }
 
-                <div class="details">
-                    <h1>Deerpoint Liquor Store</h1>
-                    <h2>14921 Deer Ridge Drive SE, Calgary, Alberta T2J 7C1, Canada</h2>
-                    <br>
-                    <h1>Operating Hours</h1>
-                    <h2>Open Today 10:00 am - 10:00 pm</h2>
-                    <h3>Operating hours may differ due to the outbreak of COVID-19.</h3>
-                </div>
+                                            document.getElementById("result").innerHTML = products.toString();
+                                            });
+                                        </script>
 
-            </div>
-        </div>      
+                                        <div id="result">
 
-        <footer>
-            <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
-            <p>Copyright &copy; deerpointliquor</p>
-        </footer>
-        <script>
-            // When the user scrolls down 20px from the top of the document, slide down the navbar
-            window.onscroll = function () {
-                scrollFunction()
-            };
+                                        </div>
 
-            function scrollFunction() {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    document.getElementById("navbar").style.top = "0";
-                } else {
-                    document.getElementById("navbar").style.top = "-10%";
-                }
-            }
-        </script>
-    </body>
-</html>
+                                        <div id="nav">
+                                            <img src="/img/logo.png" alt="logo">
+                                        </div>
+
+                                        <!-- Middle Section -->
+                                        <div class="middle">
+                                            <img src="/img/mid.png" alt="logo">
+                                                <div class="midButton">
+                                                    <button style="background-color: #245559; color: white;">Shop Now</button><button>Read more</button>
+                                                </div>
+                                        </div>
+                                        <!-- Middle Section -->
+                                        <div class="service">
+                                            <div class="colMid">
+                                                <h2><i class="fa fa-phone"></i>Online Support</h2>
+                                                <h2><i class="fa fa-automobile"></i>Curbside Pickup</h2>
+                                                <h2><i class="fa fa-handshake-o"></i>Easy Refunds</h2>
+                                                <h2><i class="fa fa-truck"></i>Delivery</h2>
+                                            </div>
+                                        </div>
+                                        <div class="feature">
+                                            <h1>Featured Items</h1>
+                                            <br>
+                                                <div class="cotentFeature">
+                                                    <img src="/img/sauvignon-blanc.de78c9e.png" alt="logo">
+                                                        <h2>Kim Crowford</h2>
+                                                        <h4>Sauvignon Blanc</h4>
+                                                        <h3>$19.99</h3>
+                                                        <img src="/img/longshot-cabernet-bottle.png" alt="logo" style="width: 19%;">
+                                                            <h2>Long Shot</h2>
+                                                            <h4>Carbenet Sauvignon</h4>
+                                                            <h3>$16.99</h3>
+                                                            <img src="/img/12383264-1_1580663722.png" alt="logo" style="width: 50%;">
+                                                                <h2>Beringer</h2>
+                                                                <h4>Carbenet Sauvignon</h4>
+                                                                <h3>$9.99</h3>
+                                                                <img src="/img/5a601bef-e7d9-4ca4-9310-7dc59be3d66b_0_400.png" alt="logo" style="width: 25%;">
+                                                                    <h2>Terermana</h2>
+                                                                    <h4>Tequila</h4>
+                                                                    <h3>$26.99</h3>
+                                                                    <img src="/img/14404701-1_1582145735.png" alt="logo" style="width: 50%;">
+                                                                        <h2>Pink Whitney</h2>
+                                                                        <h4>Vodka</h4>
+                                                                        <h3>$29.99</h3>
+                                                                        </div>
+
+                                                                        </div>
+
+                                                                        <div class="sale">
+                                                                            <h1>On Sale Items</h1>
+                                                                            <br>
+                                                                                <div class="cotentSale">
+                                                                                    <img src="/img/sauvignon-blanc.de78c9e.png" alt="logo">
+                                                                                        <h2>Kim Crowford</h2>
+                                                                                        <h4>Sauvignon Blanc</h4>
+                                                                                        <h3><span style="text-decoration: line-through;">$22.99</span> &rarr; $19.99</h3>
+                                                                                        <img src="/img/longshot-cabernet-bottle.png" alt="logo" style="width: 19%;">
+                                                                                            <h2>Long Shot</h2>
+                                                                                            <h4>Carbenet Sauvignon</h4>
+                                                                                            <h3><span style="text-decoration: line-through;">$19.99</span> &rarr; $16.99</h3>
+                                                                                            <img src="/img/12383264-1_1580663722.png" alt="logo" style="width: 50%;">
+                                                                                                <h2>Beringer</h2>
+                                                                                                <h4>Carbenet Sauvignon</h4>
+                                                                                                <h3><span style="text-decoration: line-through;">$15.99</span> &rarr; $9.99</h3>
+                                                                                                <img src="/img/5a601bef-e7d9-4ca4-9310-7dc59be3d66b_0_400.png" alt="logo" style="width: 25%;">
+                                                                                                    <h2>Terermana</h2>
+                                                                                                    <h4>Tequila</h4>
+                                                                                                    <h3><span style="text-decoration: line-through;">$31.99</span> &rarr; $26.99</h3>
+                                                                                                    <img src="/img/14404701-1_1582145735.png" alt="logo" style="width: 50%;">
+                                                                                                        <h2>Pink Whitney</h2>
+                                                                                                        <h4>Vodka</h4>
+                                                                                                        <h3><span style="text-decoration: line-through;">$36.99</span> &rarr; $29.99</h3>
+                                                                                                        </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="details">
+                                                                                                            <h1>Deerpoint Liquor Store</h1>
+                                                                                                            <h2>14921 Deer Ridge Drive SE, Calgary, Alberta T2J 7C1, Canada</h2>
+                                                                                                            <br>
+                                                                                                                <h1>Operating Hours</h1>
+                                                                                                                <h2>Open Today 10:00 am - 10:00 pm</h2>
+                                                                                                                <h3>Operating hours may differ due to the outbreak of COVID-19.</h3>
+                                                                                                        </div>
+
+                                                                                                        </div>
+                                                                                                        </div>      
+
+                                                                                                        <footer>
+                                                                                                            <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+                                                                                                                        <p>Copyright &copy; deerpointliquor</p>
+                                                                                                                        </footer>
+                                                                                                                        <script>
+                                                                                                                            // When the user scrolls down 20px from the top of the document, slide down the navbar
+                                                                                                                            window.onscroll = function () {
+                                                                                                                            scrollFunction()
+                                                                                                                            };
+                                                                                                                            function scrollFunction() {
+                                                                                                                            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                                                                                                                            document.getElementById("navbar").style.top = "0";
+                                                                                                                            } else {
+                                                                                                                            document.getElementById("navbar").style.top = "-10%";
+                                                                                                                            }
+                                                                                                                            }
+                                                                                                                        </script>
+                                                                                                                        </body>
+                                                                                                                        </html>

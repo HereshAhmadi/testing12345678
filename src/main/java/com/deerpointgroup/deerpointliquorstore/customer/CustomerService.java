@@ -30,6 +30,7 @@ public class CustomerService implements UserDetailsService {
     //login
     @Override
     public UserDetails loadUserByUsername(String username)
+       
             throws UsernameNotFoundException {
         Customer user = customerRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not present"));

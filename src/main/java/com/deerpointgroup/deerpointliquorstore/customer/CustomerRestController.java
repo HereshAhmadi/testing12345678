@@ -8,6 +8,9 @@ package com.deerpointgroup.deerpointliquorstore.customer;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +39,18 @@ public class CustomerRestController {
 
         String result = customerService.addNewCustomer(name, password, passwordRepeat, email);
         return result;
+    }
+
+    @GetMapping()
+    public String getUserInfo() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            return username;
+        }
+        
+        return null;
     }
 
 }
