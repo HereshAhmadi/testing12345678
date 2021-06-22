@@ -47,7 +47,7 @@ public class ProductService {
     
     
     @Transactional
-    public void updateProduct(long productId, String name, String productDescription, int productQuantity, double productPrice){
+    public void updateProduct(long productId, String name, String productDescription, int productQuantity, double productPrice, double productDiscount){
         boolean exists = productRepository.existsById(productId);
         
         if(!exists){
@@ -73,5 +73,9 @@ public class ProductService {
     
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+    
+    public List<Product> getMostSoldProducts() {
+        return productRepository.findMostSoldProducts();
     }
 }

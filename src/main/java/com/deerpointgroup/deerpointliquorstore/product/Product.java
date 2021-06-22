@@ -27,7 +27,8 @@ public class Product {
     //private String productCategory;
     private int productQuantity;
     private double productPrice;
-    //private int quantitySold;
+    private double productDiscount;
+    private int quantitySold;
     
     public Product(){
     }
@@ -38,6 +39,8 @@ public class Product {
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        productDiscount = 0;
+        quantitySold = 0;
     }
 
     public Product(String productName, String productDescription, int productQuantity, double productPrice) {
@@ -45,6 +48,8 @@ public class Product {
         this.productDescription = productDescription;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+        productDiscount = 0;
+        quantitySold = 0;
     }
 
     public long getProductID() {
@@ -87,9 +92,24 @@ public class Product {
         this.productPrice = productPrice;
     }
 
+    public double getProductDiscount() {
+        return productDiscount;
+    }
+
+    public void setProductDiscount(double productDiscount) {
+        this.productDiscount = productDiscount;
+    }
+
+    public int getQuantitySold() {
+        return quantitySold;
+    }
+
+    public void setQuantitySold(int quantitySold) {
+        this.quantitySold = quantitySold;
+    }
     
     @Override
     public String toString() {
-        return "Product{" + "productID=" + productID + ", productName=" + productName +  ",productDescription" + productDescription +", productQuantity=" + productQuantity + ", productPrice=" + productPrice + '}';
+        return "Product{" + "productID=" + productID + ", productName=" + productName +  ",productDescription" + productDescription +", productQuantity=" + productQuantity + ", productPrice=" + productPrice + ", productDiscount=" + productDiscount + '}';
     }
 }
