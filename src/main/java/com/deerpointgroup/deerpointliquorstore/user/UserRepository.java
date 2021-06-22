@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.deerpointgroup.deerpointliquorstore.customer;
+package com.deerpointgroup.deerpointliquorstore.user;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Repository;
  * @author 699785
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long>{
+public interface UserRepository extends JpaRepository<User, Long>{
 
-    Optional<Customer> findCustomerByEmail(String email);
+    Optional<User> findCustomerByEmail(String email);
     
-    Optional<Customer> findUserByUsername(String username); 
+    Optional<User> findUserByUsername(String username); 
 }
