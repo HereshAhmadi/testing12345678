@@ -5,6 +5,8 @@
  */
 package com.deerpointgroup.deerpointliquorstore.customer;
 
+import com.deerpointgroup.deerpointliquorstore.product.Product;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +42,11 @@ public class CustomerService implements UserDetailsService {
     private void createUser(UserDetails user) {
         customerRepository.save((Customer) user);
     }
- 
+    
+    //
+    public List<Customer> getCustomers() {
+        return customerRepository.findAll();
+    }
 
     //register
     public String addNewCustomer(String name, String password, String repeatPassword, String email) {
