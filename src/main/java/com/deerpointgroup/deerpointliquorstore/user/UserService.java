@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.deerpointgroup.deerpointliquorstore.customer;
+package com.deerpointgroup.deerpointliquorstore.user;
 
-import com.deerpointgroup.deerpointliquorstore.product.Product;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,29 +23,28 @@ import org.springframework.stereotype.Service;
  * @author 699785
  */
 @Service
-public class CustomerService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private UserRepository userRepository;
 
     //login
     @Override
     public UserDetails loadUserByUsername(String username)
-       
             throws UsernameNotFoundException {
-        Customer user = customerRepository.findUserByUsername(username)
+        User user = userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not present"));
         return user;
     }
 
     //create user
     private void createUser(UserDetails user) {
-        customerRepository.save((Customer) user);
+        userRepository.save((User) user);
     }
-    
+
     //
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+    public List<User> getCustomers() {
+        return userRepository.findAll();
     }
 
     //register
@@ -56,18 +54,25 @@ public class CustomerService implements UserDetailsService {
 
             return "your password does not match";
         }
-        
+
+        if (password.length() < 8) {
+            return "password must be at least 8 characters long";
+        }
+
+        if (name.length() < 8) {
+            return "username must be at least 8 characters long";
+
+        }
+
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
-        
-        
-        Customer customer = new Customer(name, password, email);
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
+
+        User customer = new User(name, password, email);
+        Optional<User> customerOptional = userRepository.findCustomerByEmail(customer.getEmail());
 
         if (customerOptional.isPresent()) {
             return "email taken";
         }
-
 
         createUser(customer);
         return "Account created";

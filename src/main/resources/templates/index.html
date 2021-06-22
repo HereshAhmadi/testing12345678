@@ -21,25 +21,22 @@
                     <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
                 </span>
 
-
-
-                <span class="menu"> 
-                    <script>
-                        $.get("/api/user/username", function (data) {
-                        if (data || data.length > 0) {
-                        document.getElementById("username").innerHTML = data;
-                        $("#login").remove();
-                        $("#register").remove();
-                        $(".menu").append('<a href="/logout" id="logout">Logout</a>');
+                <script>
+                    $.get("/api/user/username", function (data) {
+                        if (data && data.length < 100) {
+                            document.getElementById("username").innerHTML = data;
+                            $("#login").remove();
+                            $("#register").remove();
+                            $(".menu").append('<a href="/logout" id="logout">Logout</a>');
                         } else {
-                        $("#logout").remove();
-                        $("#cart").remove();
+                            $("#logout").remove();
+                            $("#cart").remove();
                         }
                         console.log(data);
-                        });
-                    </script>
+                    });
+                </script>
 
-
+                <span class="menu"> 
                     <a href="index">Home</a>
                     <a href="#">About</a>
                     <a href="#">Products</a>
@@ -56,17 +53,14 @@
 
                 <script>
                     $.get("/api/product", function (data) {
-                    //$(".cotentFeature").html(data);
-                    const products = JSON.stringify(data);
-                    const productObject = JSON.parse(products);
+                        const products = JSON.stringify(data);
+                        const productObject = JSON.parse(products);
 
-                    for (let i = 0; i < productObject.length; i++) {
-                    let productName = productObject[i].productName;
-                    let productPrice = productObject[i].productPrice;
-                    $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice)+"</h3></h2>";
-                    }
-
-                    //document.getElementById("result").innerHTML = products.toString();
+                        for (let i = 0; i < productObject.length; i++) {
+                            let productName = productObject[i].productName;
+                            let productPrice = productObject[i].productPrice;
+                            $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
+                        }
                     });
 
                 </script>
