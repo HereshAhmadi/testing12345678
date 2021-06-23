@@ -19,6 +19,7 @@ public class HomeController implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/login").setViewName("login");
                 registry.addViewController("/register").setViewName("register");
+                registry.addViewController("/profile").setViewName("profile");
 	}
        
 }
