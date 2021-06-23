@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/css/design.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Deerpoint Liquor Store</title>
+    </head>
+    
+    <body>
+        <script>
+            $.get("/api/user/username", function (data) {
+                const username = JSON.parse(JSON.stringify(data));
+                $('#name').val(username);
+            });
+
+        </script>
+                                <div class="main">
+                                    <div class="top">
+
+                                        <span class="menu-icons">
+                                            <a href="#" class="fa fa-facebook"></a>
+                                            <a href="#" class="fa fa-twitter"></a>
+                                            <a href="#" class="fa fa-instagram"></a>
+                                            <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+                                        </span>
+
+
+                                        <span class="menu"> 
+                                            <a href="index">Home</a>
+                                            <a href="#">About</a>
+                                            <a href="#">Products</a>
+                                            <a href="login">Log in</a>
+                                            <a href="register">Sign up</a>
+                                        </span>
+                                    </div>
+                                    <div class="container"> 
+                                        <div id="nav">
+                                            <img src="/img/logo.png" alt="logo">
+                                        </div>
+
+                                        <div class="register">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <h2>Customer Profile</h2>
+                                                    <form class="">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="name">Name</label>
+                                                            <input placeholder="Enter name" type="name" id="name" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="email">Email Address</label>
+                                                            <input placeholder="Enter email" type="email" id="email" class="form-control" value="kanpy2010@gmail.com">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="password">Password</label>
+                                                            <input placeholder="Enter password" type="password" id="password" class="form-control" value="">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="confirmPassword">Confirm Password</label>
+                                                            <input placeholder="Confirm password" type="password" id="confirmPassword" class="form-control" value=""></div>
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </form>
+                                                </div>
+
+                                                <div class="col-md-9">
+                                                    <h2>My Orders</h2>
+                                                    <div class="table-responsive">
+                                                        <table class="table-sm table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>DATE</th>
+                                                                    <th>TOTAL</th>
+                                                                    <th>PAID</th>
+                                                                    <th>DELIVERED</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br><br><br><br><br>
+                                                    <footer>
+                                                        <p>Copyright &copy; deerpointliquor</p>
+                                                    </footer>
+
+    </body>
+</html>
