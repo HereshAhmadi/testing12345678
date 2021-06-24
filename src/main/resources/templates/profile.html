@@ -17,6 +17,7 @@
             $.get("/api/user/username", function (data) {
                 const username = JSON.parse(JSON.stringify(data));
                 $('#name').val(username);
+                $('#email').val("username");
             });
 
         </script>
@@ -51,11 +52,11 @@
                                                     <form class="">
                                                         <div class="form-group">
                                                             <label class="form-label" for="name">Name</label>
-                                                            <input placeholder="Enter name" type="name" id="name" class="form-control">
+                                                            <input placeholder="Enter name" type="name" id="name" readonly class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="form-label" for="email">Email Address</label>
-                                                            <input placeholder="Enter email" type="email" id="email" class="form-control" value="kanpy2010@gmail.com">
+                                                            <input placeholder="Enter email" type="email" id="email" readonly class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="form-label" for="password">Password</label>
@@ -64,14 +65,14 @@
                                                         <div class="form-group">
                                                             <label class="form-label" for="confirmPassword">Confirm Password</label>
                                                             <input placeholder="Confirm password" type="password" id="confirmPassword" class="form-control" value=""></div>
-                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                        <button type="submit">Update</button>
                                                     </form>
                                                 </div>
 
                                                 <div class="col-md-9">
                                                     <h2>My Orders</h2>
                                                     <div class="table-responsive">
-                                                        <table class="table-sm table table-striped table-bordered table-hover">
+                                                        <table>
                                                             <thead>
                                                                 <tr>
                                                                     <th>ID</th>

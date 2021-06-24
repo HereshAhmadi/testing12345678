@@ -30,7 +30,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
-    @RequestMapping(value ="/register", method= RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerNewCustomer(@RequestParam(required = true) String name,
             @RequestParam(required = true) String password,
             @RequestParam(required = true) String passwordRepeat,
@@ -40,9 +40,10 @@ public class UserRestController {
         return result;
     }
 
-     @RequestMapping(value ="/username", method= RequestMethod.GET)
-     @ResponseBody
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
     public String getUserInfo(Principal principal) {
         return principal.getName();
     }
+    
 }

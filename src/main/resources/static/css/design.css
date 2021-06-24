@@ -298,8 +298,17 @@ hr {
     color: #245559;
 }
 
+/* Profile section */
+.row {
+    display: flex;
+}
 
+.col-md-3 {
+}
 
+.col.md-9 {
+    
+}
 
 
 @media screen and (max-width: 992px) {
