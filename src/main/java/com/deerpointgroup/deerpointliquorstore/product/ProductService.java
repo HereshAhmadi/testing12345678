@@ -79,7 +79,7 @@ public class ProductService {
         return productRepository.findMostSoldProducts();
     }
 
-//    public List<Product> getOnSaleProducts() {
-//        return productRepository.findOnSaleProducts();
-//    }
+    public List<Product> getOnSaleProducts() {
+        return productRepository.findOnSaleProducts();
+    }
 }

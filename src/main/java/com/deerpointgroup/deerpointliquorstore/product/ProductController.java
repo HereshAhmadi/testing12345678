@@ -34,10 +34,10 @@ public class ProductController {
         return productService.getMostSoldProducts();
     }
     
-//    @RequestMapping(value = "/on-sale", method = RequestMethod.GET)
-//    public List<Product> getOnSaleItems() {
-//        return productService.getOnSaleProducts();
-//    }
+    @RequestMapping(value = "/on-sale", method = RequestMethod.GET)
+    public List<Product> getOnSaleItems() {
+        return productService.getOnSaleProducts();
+    }
 
     
 
