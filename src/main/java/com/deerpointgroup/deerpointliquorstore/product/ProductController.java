@@ -38,6 +38,11 @@ public class ProductController {
     public List<Product> getOnSaleItems() {
         return productService.getOnSaleProducts();
     }
+    
+    @RequestMapping(value = "/featured", method = RequestMethod.GET)
+    public List<Product> getFeaturedItems() {
+        return productService.getFeaturedProducts();
+    }
 
     
 
