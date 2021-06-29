@@ -29,6 +29,7 @@ public class Product {
     private double productPrice;
     private double productDiscount;
     private int quantitySold;
+    private boolean featuredProduct;
     
     public Product(){
     }
@@ -41,6 +42,7 @@ public class Product {
         this.productPrice = productPrice;
         productDiscount = 0;
         quantitySold = 0;
+        featuredProduct = false;
     }
 
     public Product(String productName, String productDescription, int productQuantity, double productPrice) {
@@ -50,6 +52,7 @@ public class Product {
         this.productPrice = productPrice;
         productDiscount = 0;
         quantitySold = 0;
+        featuredProduct = false;
     }
 
     public long getProductID() {
@@ -107,9 +110,17 @@ public class Product {
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
     }
+
+    public boolean isFeaturedProduct() {
+        return featuredProduct;
+    }
+
+    public void setFeaturedProduct(boolean featuredProduct) {
+        this.featuredProduct = featuredProduct;
+    }
     
     @Override
     public String toString() {
-        return "Product{" + "productID=" + productID + ", productName=" + productName +  ",productDescription" + productDescription +", productQuantity=" + productQuantity + ", productPrice=" + productPrice + ", productDiscount=" + productDiscount + '}';
+        return "Product{" + "productID=" + productID + ", productName=" + productName +  ",productDescription" + productDescription +", productQuantity=" + productQuantity + ", productPrice=" + productPrice + ", productDiscount=" + productDiscount + ", featuredProduct=" + featuredProduct +'}';
     }
 }
