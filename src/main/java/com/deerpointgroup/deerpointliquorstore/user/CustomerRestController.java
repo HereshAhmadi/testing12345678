@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,8 +43,16 @@ public class CustomerRestController {
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
-    public String getUserInfo(Principal principal) {
+    public String getCustomerName(Principal principal) {
         return principal.getName();
     }
+    
+    
+    @RequestMapping(value = "/customerInfo", method = RequestMethod.GET)
+    public String getCustomerInfo(Principal principal) {
+        return customerService.loadUserByUsername(principal.getName()).getUsername() + "," +
+                ((Customer)customerService.loadUserByUsername(principal.getName())).getEmail();
+    }
+    
     
 }
