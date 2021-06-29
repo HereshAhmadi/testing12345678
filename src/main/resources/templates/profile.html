@@ -17,7 +17,12 @@
             $.get("/api/customer/username", function (data) {
                 const username = JSON.parse(JSON.stringify(data));
                 $('#name').val(username);
-                $('#email').val("username");
+            });
+            
+            $.get("/api/customer/profile", function (data) {
+                const profile = JSON.parse(JSON.stringify(data));
+                const email = JSON.parse(JSON.stringify(profile.principal));
+                $('#email').val(email.email);
             });
 
         </script>

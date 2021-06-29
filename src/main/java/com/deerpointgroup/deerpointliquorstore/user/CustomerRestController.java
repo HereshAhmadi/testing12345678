@@ -46,4 +46,10 @@ public class CustomerRestController {
         return principal.getName();
     }
     
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @ResponseBody
+    public Principal getProfile(Principal principal) {
+        return principal;
+    }
+    
 }
