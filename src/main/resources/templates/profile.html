@@ -14,9 +14,14 @@
     
     <body>
         <script>
+           
             $.get("/api/customer/customerInfo", function (data) {
                 const customer = JSON.parse(JSON.stringify(data));
-                console.log(customer);
+                const customerArray = customer.split(',');
+                const user = customerArray[0];
+                const email = customerArray[1];
+                $('#name').val(user);
+                $('#email').val(email);
             });
             
 
