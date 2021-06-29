@@ -34,15 +34,11 @@ public class ProductController {
         return productService.getMostSoldProducts();
     }
     
-//    @RequestMapping(value = "/mostsold", method = RequestMethod.GET)
-//    public List<Product> getMostSoldItems() {
-//        return productService.getMostSoldProducts();
+//    @RequestMapping(value = "/on-sale", method = RequestMethod.GET)
+//    public List<Product> getOnSaleItems() {
+//        return productService.getOnSaleProducts();
 //    }
 
-//    @RequestMapping(value = "/mostsold", method = RequestMethod.GET)
-//    public List<Product> getMostSoldItems() {
-//        return productService.getMostSoldProducts();
-//    }
     
 
     @PostMapping
