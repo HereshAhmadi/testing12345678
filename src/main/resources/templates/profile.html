@@ -14,10 +14,9 @@
     
     <body>
         <script>
-            $.get("/api/customer/username", function (data) {
-                const username = JSON.parse(JSON.stringify(data));
-                $('#name').val(username);
-                $('#email').val("username");
+            $.get("/api/customer/customerInfo", function (data) {
+                const customer = JSON.parse(JSON.stringify(data));
+                console.log(customer);
             });
 
         </script>
