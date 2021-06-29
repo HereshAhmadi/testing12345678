@@ -14,7 +14,7 @@
     
     <body>
         <script>
-            $.get("/api/user/username", function (data) {
+            $.get("/api/customer/username", function (data) {
                 const username = JSON.parse(JSON.stringify(data));
                 $('#name').val(username);
                 $('#email').val("username");

@@ -20,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 699785
  */
 @RestController
-@RequestMapping("/api/user")
-public class UserRestController {
+@RequestMapping("/api/customer")
+public class CustomerRestController {
 
-    private final UserService userService;
+    private final CustomerService customerService;
 
     @Autowired
-    public UserRestController(UserService userService) {
-        this.userService = userService;
+    public CustomerRestController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -36,7 +36,7 @@ public class UserRestController {
             @RequestParam(required = true) String passwordRepeat,
             @RequestParam(required = true) String email) throws IOException, ServletException {
 
-        String result = userService.addNewCustomer(name, password, passwordRepeat, email);
+        String result = customerService.addNewCustomer(name, password, passwordRepeat, email);
         return result;
     }
 

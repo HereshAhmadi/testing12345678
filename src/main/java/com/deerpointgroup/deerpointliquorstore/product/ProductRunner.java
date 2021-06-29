@@ -1,10 +1,10 @@
 package com.deerpointgroup.deerpointliquorstore.product;
 
-import com.deerpointgroup.deerpointliquorstore.user.User;
-import com.deerpointgroup.deerpointliquorstore.user.UserRepository;
+import com.deerpointgroup.deerpointliquorstore.user.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import com.deerpointgroup.deerpointliquorstore.user.CustomerRepository;
 
 @Component
 public class ProductRunner implements CommandLineRunner {
@@ -12,7 +12,7 @@ public class ProductRunner implements CommandLineRunner {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,7 +25,7 @@ public class ProductRunner implements CommandLineRunner {
         productRepository.save(new Product("Pink Whitney", "Vodka infused with fresh pink lemonade, creating a balance of sweetness and refreshing taste", 8, 29.99));
 
         //users
-        userRepository.save(new User("user", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email@gmail.com"));
+        userRepository.save(new Customer("user", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email@gmail.com"));
 
     }
 

@@ -21,18 +21,18 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author 699785
  */
 @Entity
-@Table(name = "users")
-public class User implements UserDetails{
+@Table(name = "customer")
+public class Customer implements UserDetails{
     @Id
     @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
             allocationSize = 1
     )
     
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
+            generator = "customer_sequence"
     )
     private Long id;
     private String username;
@@ -40,11 +40,11 @@ public class User implements UserDetails{
     private String email;
     private String password;
     
-    public User(){
+    public Customer(){
         
     }
 
-    public User(String username, String password, String email) {
+    public Customer(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -74,7 +74,7 @@ public class User implements UserDetails{
 
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + username  + ", email=" + email + '}';
+        return "Customer{" + "id=" + id + ", name=" + username  + ", email=" + email + '}';
     }
 
     @Override

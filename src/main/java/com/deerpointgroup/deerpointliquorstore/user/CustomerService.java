@@ -23,28 +23,28 @@ import org.springframework.stereotype.Service;
  * @author 699785
  */
 @Service
-public class UserService implements UserDetailsService {
+public class CustomerService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository customerRepository;
 
     //login
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not present"));
+        Customer user = customerRepository.findCustomerByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Customer not present"));
         return user;
     }
 
     //create user
-    private void createUser(UserDetails user) {
-        userRepository.save((User) user);
+    private void createCustomer(UserDetails user) {
+        customerRepository.save((Customer) user);
     }
 
-    //
-    public List<User> getCustomers() {
-        return userRepository.findAll();
+    //get all users
+    public List<Customer> getCustomers() {
+        return customerRepository.findAll();
     }
 
     //register
@@ -67,14 +67,14 @@ public class UserService implements UserDetailsService {
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
 
-        User customer = new User(name, password, email);
-        Optional<User> customerOptional = userRepository.findCustomerByEmail(customer.getEmail());
+        Customer customer = new Customer(name, password, email);
+        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
 
         if (customerOptional.isPresent()) {
             return "email taken";
         }
 
-        createUser(customer);
+        createCustomer(customer);
         return "Account created";
 
     }
