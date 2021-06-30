@@ -13,14 +13,7 @@
 
         <div class="main">
             <div class="top">
-
-                <span class="menu-icons">
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-instagram"></a>
-                    <span><i class="fa fa-phone"></i>+5877007000<i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
-                </span>
-
+                
                 <script>
                     $.get("/api/user/username", function (data) {
                         if (data && data.length < 100) {
@@ -38,7 +31,7 @@
 
                 <span class="menu"> 
                     <a href="index">Home</a>
-                    <a href="#">About</a>
+                    <a href="about">About</a>
                     <a href="#">Products</a>
                     <a href="#" id="cart">Cart</a>
 
@@ -49,7 +42,7 @@
             </div>
 
             <div class="container"> 
-
+                <br><br>
 
                 <script>
                     $.get("/api/product", function (data) {
@@ -67,10 +60,13 @@
 
                 <!-- Middle Section -->
                 <div class="middle">
+                    <img src="/img/logo.png" alt="logo" style="width: 20vw; float: left;">
                     <img src="/img/mid.png" alt="logo">
+                    
                     <div class="midButton">
                         <button style="background-color: #245559; color: white;">Shop Now</button><button>Read more</button>
                     </div>
+                    <br><br><br>
                 </div>
                 <!-- Middle Section -->
                 <div class="service">

@@ -11,6 +11,9 @@ body::after {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.7;
     top: 0;
@@ -38,12 +41,8 @@ body::after {
 .top a{
     text-decoration: none;
     color: white;
-    padding-left: 1%;
+    padding-left: 4%;
     font-size: 150%;
-}
-
-.top span i{
-    padding-left: 1%;
 }
 
 .menu{
@@ -51,9 +50,14 @@ body::after {
 }
 
 #username{
-    font-size: 1.5vw;
+    float: right;
     text-decoration: underline;
-    padding-left: 15vw;
+    padding-left: 1vw;
+}
+#logout{
+    float: right;
+    color: red;
+    padding-right: 1vw;
 }
 
 .menu-icons{
@@ -178,13 +182,20 @@ hr {
     color: white;
 }
 
-
+.reviews{
+    padding-top: 10vh;
+    background-color:white; 
+      text-align: center;
+      color: #245559;
+}
 
 /* Title middle section */
 .middle{
     text-align: center;
     color: green;
-    padding-bottom: 10%;
+}
+.middleAbout{
+    text-align: center;
 }
 
 .middle img{
@@ -220,6 +231,16 @@ hr {
     margin: 0;
 }
 
+.colMid h3{
+    font-size: 1.3vw;
+    padding: .5vw;
+    margin: 0;
+}
+
+
+.colMid h3 i{
+    padding: 1%;
+}
 .colMid h2 i{
     padding: 1%;
 }
@@ -290,7 +311,7 @@ hr {
 .details{
     text-align: center;
     background-color: white;
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 
 }
 
@@ -308,6 +329,51 @@ hr {
 
 .col.md-9 {
     
+}
+
+#slideshow {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 120vh;
+}
+
+.reviews button{
+    background-color: white;
+    color: #245559;
+    padding: 1.5% 4%;
+    margin: 1% 1%;
+    border: none;
+    cursor: pointer;
+    border-radius: 10%;
+    font-size: 0.8vw;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+    padding: 20px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+}
+
+.fa-instagram {
+      padding: 20px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+    background: #f09433; 
+background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  
+  color: white;
 }
 
 
