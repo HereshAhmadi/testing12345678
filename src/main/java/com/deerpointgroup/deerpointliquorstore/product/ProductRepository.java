@@ -18,6 +18,6 @@ interface ProductRepository extends JpaRepository<Product, Long>{
     List<Product> findFeaturedProducts();
     
     
-    @Query("SELECT s FROM Product s WHERE s.productName = ?%1%")
-    List<Product> searchProducts(String name);
+//    @Query("SELECT s FROM Product s WHERE s.productName = ?%1%")
+//    List<Product> searchProducts(String name);
 }
