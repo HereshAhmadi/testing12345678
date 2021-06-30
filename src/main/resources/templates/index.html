@@ -22,7 +22,7 @@
                 </span>
 
                 <script>
-                    $.get("/api/customer/username", function (data) {
+                    $.get("/api/user/username", function (data) {
                         if (data && data.length < 100) {
                             $("#username").append('<a href="profile">' + data + '</a>');
                             $("#login").remove();

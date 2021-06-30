@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.ServletException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,37 +20,37 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 699785
  */
 @RestController
-@RequestMapping("/api/customer")
-public class CustomerRestController {
+@RequestMapping("/api/user")
+public class UserRestController {
 
-    private final CustomerService customerService;
+    private final UserService userService;
 
     @Autowired
-    public CustomerRestController(CustomerService customerService) {
-        this.customerService = customerService;
+    public UserRestController(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerNewCustomer(@RequestParam(required = true) String name,
+    public String registerNewUser(@RequestParam(required = true) String name,
             @RequestParam(required = true) String password,
             @RequestParam(required = true) String passwordRepeat,
             @RequestParam(required = true) String email) throws IOException, ServletException {
 
-        String result = customerService.addNewCustomer(name, password, passwordRepeat, email);
+        String result = userService.addNewUser(name, password, passwordRepeat, email);
         return result;
     }
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
-    public String getCustomerName(Principal principal) {
+    public String getUserName(Principal principal) {
         return principal.getName();
     }
     
     
-    @RequestMapping(value = "/customerInfo", method = RequestMethod.GET)
-    public String getCustomerInfo(Principal principal) {
-        return customerService.loadUserByUsername(principal.getName()).getUsername() + "," +
-                ((Customer)customerService.loadUserByUsername(principal.getName())).getEmail();
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    public String getUserInfo(Principal principal) {
+        return userService.loadUserByUsername(principal.getName()).getUsername() + "," +
+                ((User)userService.loadUserByUsername(principal.getName())).getEmail();
     }
     
     

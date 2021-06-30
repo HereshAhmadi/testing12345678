@@ -23,32 +23,32 @@ import org.springframework.stereotype.Service;
  * @author 699785
  */
 @Service
-public class CustomerService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private UserRepository userRepository;
 
     //login
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        Customer user = customerRepository.findCustomerByUsername(username)
+        User user = userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Customer not present"));
         return user;
     }
 
     //create user
-    private void createCustomer(UserDetails user) {
-        customerRepository.save((Customer) user);
+    private void createUser(UserDetails user) {
+        userRepository.save((User) user);
     }
 
     //get all users
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 
     //register
-    public String addNewCustomer(String name, String password, String repeatPassword, String email) {
+    public String addNewUser(String name, String password, String repeatPassword, String email) {
 
         if (!password.equals(repeatPassword)) {
 
@@ -67,14 +67,14 @@ public class CustomerService implements UserDetailsService {
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
 
-        Customer customer = new Customer(name, password, email);
-        Optional<Customer> customerOptional = customerRepository.findCustomerByEmail(customer.getEmail());
+        User user = new User(name, password, email);
+        Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
 
-        if (customerOptional.isPresent()) {
+        if (userOptional.isPresent()) {
             return "email taken";
         }
 
-        createCustomer(customer);
+        createUser(user);
         return "Account created";
 
     }
