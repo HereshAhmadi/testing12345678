@@ -79,6 +79,34 @@ public class UserService implements UserDetailsService {
 
     }
     
+    //edit User
+    public String editCustomer(User user, String password, String repeatPassword, String email) {
+        if (!password.equals(repeatPassword)) {
+
+            return "Your password does not match!";
+        }
+
+        if (password.length() < 8) {
+            return "Password must be at least 8 characters long!";
+        }
+
+        BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+        password = bc.encode(password);
+        user.setPassword(password);
+        user.setEmail(email);
+        Optional<User> customerOptional = userRepository.findUserByEmail(user.getEmail());
+
+        if (!user.getEmail().equals(email)) {
+            if (customerOptional.isPresent() && user.getEmail().equals(email)) {
+                return "Email taken";
+            }
+        }
+
+        userRepository.save((User) user);
+        return "Account updated";
+
+    }
+    
    
 
 }

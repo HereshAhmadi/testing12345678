@@ -39,6 +39,16 @@ public class UserRestController {
         String result = userService.addNewUser(name, password, passwordRepeat, email);
         return result;
     }
+    
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String editCustomer(Principal principal, 
+            @RequestParam(required = true) String password,
+            @RequestParam(required = true) String passwordRepeat, 
+            @RequestParam(required = true) String email) throws IOException, ServletException {
+        User user = (User) userService.loadUserByUsername(principal.getName());
+        String result = userService.editCustomer(user, password, passwordRepeat, email);
+        return result;
+    }
 
     @RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody
