@@ -15,14 +15,34 @@
     <body>
         <script>
            
-            $.get("/api/user/customerInfo", function (data) {
-                const customer = JSON.parse(JSON.stringify(data));
-                const customerArray = customer.split(',');
-                const user = customerArray[0];
-                const email = customerArray[1];
-                $('#name').val(user);
-                $('#email').val(email);
-            });
+            $.get("/api/user/userInfo", function (data) {
+                                        const customer = JSON.parse(JSON.stringify(data));
+                                        const customerArray = customer.split(',');
+                                        const user = customerArray[0];
+                                        const email = customerArray[1];
+                                        $('#name').val(user);
+                                        $('#email').val(email);
+                                        if (data) {
+                                            $("#username").append('<a href="profile">' + user + '</a>');
+                                            $("#login").remove();
+                                            $("#register").remove();
+                                            $(".menu").append('<a href="/logout" id="logout">Logout</a>');
+                                        } else {
+                                            $("#logout").remove();
+                                            $("#cart").remove();
+                                        }
+                                    });
+
+
+                                    function update() {
+                                        $.post("/api/user/update", {
+                                            password: $("#password").val(),
+                                            passwordRepeat: $("#confirmPassword").val(),
+                                            email: $("#email").val()
+                                        }).done(function (data) {
+                                            document.getElementById("result").innerHTML = data;
+                                        });
+                                    }
             
 
         </script>
@@ -39,10 +59,13 @@
 
                                         <span class="menu"> 
                                             <a href="index">Home</a>
-                                            <a href="#">About</a>
+                                            <a href="about">About</a>
                                             <a href="#">Products</a>
-                                            <a href="login">Log in</a>
-                                            <a href="register">Sign up</a>
+                                            <a href="#" id="cart">Cart</a>
+
+                                            <a href="login" id="login">Log in</a>
+                                            <a href="register" id="register">Sign up</a>
+                                            <span id ="username"></span>
                                         </span>
                                     </div>
                                     <div class="container"> 
@@ -51,17 +74,18 @@
                                         </div>
 
                                         <div class="register">
+                                            <h2 id="result" style="color: red;" ></h2>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <h2>Customer Profile</h2>
-                                                    <form class="">
+                                                    <div>
                                                         <div class="form-group">
                                                             <label class="form-label" for="name">Name</label>
                                                             <input placeholder="Enter name" type="name" id="name" readonly class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="form-label" for="email">Email Address</label>
-                                                            <input placeholder="Enter email" type="email" id="email" readonly class="form-control">
+                                                            <input placeholder="Enter email" type="email" id="email" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="form-label" for="password">Password</label>
@@ -70,8 +94,8 @@
                                                         <div class="form-group">
                                                             <label class="form-label" for="confirmPassword">Confirm Password</label>
                                                             <input placeholder="Confirm password" type="password" id="confirmPassword" class="form-control" value=""></div>
-                                                        <button type="submit">Update</button>
-                                                    </form>
+                                                        <button onclick="update()" type="submit">Update</button>
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-md-9">
