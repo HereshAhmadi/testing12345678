@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/design.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <title>Deerpoint Liquor Store</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Deerpoint Liquor Store</title>
+</head>
+<body>
 
-        <div class="main">
-            <div class="top">
-                
-                <script>
+<div class="main">
+    <div class="top">
+
+        <script>
                     $.get("/api/customer/username", function (data) {
                         if (data && data.length < 100) {
                             $("#username").append('<a href="profile">' + data + '</a>');
@@ -27,64 +27,98 @@
                         }
                         console.log(data);
                     });
-                </script>
 
-                <span class="menu"> 
+
+
+        </script>
+
+        <span class="menu">
                     <a href="index">Home</a>
                     <a href="about">About</a>
                     <a href="#">Products</a>
-<!--                    <a href="#" id="cart">Cart</a>-->
+            <!--                    <a href="#" id="cart">Cart</a>-->
 
                     <a href="login" id="login">Log in</a>
                     <a href="register" id="register">Sign up</a>
-                    <span id ="username"></span>
+                    <span id="username"></span>
                 </span>
-            </div>
+    </div>
 
-            <div class="container"> 
-                <br><br>
+    <div class="container">
+        <br><br>
 
-                <script>
+        <script>
                     $.get("/api/product", function (data) {
                         const products = JSON.stringify(data);
                         const productObject = JSON.parse(products);
-
                         for (let i = 0; i < productObject.length; i++) {
                             let productName = productObject[i].productName;
                             let productPrice = productObject[i].productPrice;
                             $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
                         }
                     });
-                </script>
-                <!-- Middle Section -->
-                <div class="middle">
-                    <img src="/img/logo.png" alt="logo" style="width: 20vw; float: left;">
-                    <img src="/img/mid.png" alt="logo">
 
-                    <div class="midButton">
-                        <button>Read more</button>
-                    </div>
-                    <br><br><br>
-                </div>
-                <!-- Middle Section -->
-                <div class="service">
-                        <h3><i class="fa fa-search">Search: <input type="text"></i></h3>
-                </div>
 
-                <div class="feature">
-                    <h1>Featured Items</h1>
-                    <br>
-                    <div class="cotentFeature">
-                        <!--                        display given product-->
-                    </div>
-                </div>
 
+        </script>
+
+
+        <!-- Middle Section -->
+        <div class="middle">
+            <img src="/img/logo.png" alt="logo" style="width: 20vw; float: left;">
+            <img src="/img/mid.png" alt="logo">
+
+            <div class="midButton">
+                <button>Read more</button>
+            </div>
+            <br><br><br>
+        </div>
+        <!-- Middle Section -->
+
+        <script>
+                function searchProducts(){
+                let searchName = document.getElementById("searchName").value;
+                let searchURL = "/api/product/search?name=" +searchName;
+                        $.get(searchURL, function (data) {
+                        const products = JSON.stringify(data);
+                        const productObject = JSON.parse(products);
+
+                        if(productObject.length > 0){
+                             document.getElementById("contentSearch").innerHTML = "";
+
+                            for (let i = 0; i < productObject.length; i++) {
+                                let productName = productObject[i].productName;
+                                let productPrice = productObject[i].productPrice;
+                                $('.contentSearch').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
+                             }
+                        }
+                    });
+                }
+
+        </script>
+        <div class="search">
+            <h3><i class="fa fa-search">Search: <input id="searchName" onchange="searchProducts()" type="text"></i></h3>
+            <h1>Searched Items</h1>
+            <br>
+            <div class="contentSearch" id="contentSearch">
+                <!--                        display given product-->
             </div>
         </div>
 
-        <footer>
-            <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
-            <p>Copyright &copy; deerpointliquor</p>
-        </footer>
-    </body>
+        <div class="feature">
+            <h1>Featured Items</h1>
+            <br>
+            <div class="cotentFeature">
+                <!--                        display given product-->
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+    <p>Copyright &copy; deerpointliquor</p>
+</footer>
+</body>
 </html>

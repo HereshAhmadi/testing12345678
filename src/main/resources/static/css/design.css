@@ -221,6 +221,27 @@ hr {
     
 }
 
+
+
+.contentSearch img{
+    width: 5vw;
+}
+
+.search{
+    text-align: center;
+    background-color: gray;
+    padding: 2vw;
+}
+
+.search h3{
+    color: #245559;
+}
+
+.search h2{
+    color: green;
+}
+
+
 .colMid{
     white-space:nowrap;
     columns: 4;

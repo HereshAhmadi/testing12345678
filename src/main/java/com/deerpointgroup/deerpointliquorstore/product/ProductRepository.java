@@ -16,8 +16,7 @@ interface ProductRepository extends JpaRepository<Product, Long>{
     List<Product> findOnSaleProducts();
     @Query(value = "SELECT * FROM Product WHERE featured_product = 1 ORDER BY featured_product DESC fetch first 5 rows only ", nativeQuery = true)
     List<Product> findFeaturedProducts();
-    
-    ////dsfsdfsdf
-//    @Query("SELECT s FROM Product s WHERE s.productName = ?%1%")
-//    List<Product> searchProducts(String name);
+
+
+    List<Product> findByProductNameContainingIgnoreCase(String name);
 }

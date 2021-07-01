@@ -82,8 +82,8 @@ public class ProductService {
         return productRepository.findFeaturedProducts();
     }
 
-//    public List<Product> searchProducts(String name) {
-//        return productRepository.searchProducts(name);
-//    }
+    public List<Product> searchProducts(String name) {
+        return productRepository.findByProductNameContainingIgnoreCase(name);
+    }
 
 }
