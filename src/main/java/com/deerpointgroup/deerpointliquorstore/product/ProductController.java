@@ -84,4 +84,10 @@ public class ProductController {
         productService.updateProduct(productID, productName, productDescription, productQuantity, productPrice, productDiscount);
     }
 
+    @RequestMapping(path="/search", method = RequestMethod.GET)
+    public List<Product> getAllProducts(@RequestParam(required = true) String name){
+
+        return productService.searchProducts(name);
+    }
+
 }
