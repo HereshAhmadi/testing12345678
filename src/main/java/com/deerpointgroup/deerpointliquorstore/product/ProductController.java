@@ -86,7 +86,6 @@ public class ProductController {
 
     @RequestMapping(path="/search", method = RequestMethod.GET)
     public List<Product> getAllProducts(@RequestParam(required = true) String name){
-
         return productService.searchProducts(name);
     }
 
