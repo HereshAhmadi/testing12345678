@@ -3,6 +3,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 0.8vw;
     height: 100vh;
+    box-sizing: border-box;
 }
 
 body::after {
@@ -221,11 +222,16 @@ hr {
     
 }
 
-
+.contentSearch{
+padding-right: 20px;
+padding-bottom: 20px;
+}
 
 .contentSearch img{
-    width: 5vw;
-}
+    width:  10vw;
+    height: 30vh;
+    object-fit:scale-down;
+    }
 
 .search{
     text-align: center;
@@ -278,6 +284,28 @@ hr {
 
 .cotentFeature img{
     width: 40%;
+}
+
+
+.column {
+  float: left;
+  width: 33.33%;
+  text-align:center;
+}
+
+.column h3{
+    color: #245559;
+}
+
+.column h2{
+    color: green;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .feature h3{
@@ -341,7 +369,7 @@ hr {
 }
 
 /* Profile section */
-.row {
+.rowProfile {
     display: flex;
 }
 
