@@ -32,7 +32,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username)
+        User user = userRepository.findUserByUsernameIgnoreCase(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Customer not present"));
         return user;
     }
@@ -64,16 +64,20 @@ public class UserService implements UserDetailsService {
 
         }
 
-        BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
-        password = bc.encode(password);
+        Optional<User> userByEmail = userRepository.findUserByEmailIgnoreCase(email);
+        Optional<User> userByName = userRepository.findUserByUsernameIgnoreCase(name);
 
-        User user = new User(name, password, email);
-        Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
-
-        if (userOptional.isPresent()) {
+        if (userByEmail.isPresent()) {
             return "email taken";
         }
 
+        if (userByName.isPresent()) {
+            return "User with this name already exists";
+        }
+
+        BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+        password = bc.encode(password);
+        User user = new User(name, password, email);
         createUser(user);
         return "Account created";
 
@@ -90,18 +94,16 @@ public class UserService implements UserDetailsService {
             return "Password must be at least 8 characters long!";
         }
 
+        Optional<User> userByEmail = userRepository.findUserByEmailIgnoreCase(email);
+
+        if (user.getEmail().equals(email) || userByEmail.isPresent()) {
+            return "Email taken";
+        }
+
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
         user.setPassword(password);
         user.setEmail(email);
-        Optional<User> customerOptional = userRepository.findUserByEmail(user.getEmail());
-
-        if (!user.getEmail().equals(email)) {
-            if (customerOptional.isPresent() && user.getEmail().equals(email)) {
-                return "Email taken";
-            }
-        }
-
         userRepository.save((User) user);
         return "Account updated";
 
