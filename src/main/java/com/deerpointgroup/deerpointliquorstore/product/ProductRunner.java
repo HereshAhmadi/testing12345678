@@ -1,5 +1,7 @@
 package com.deerpointgroup.deerpointliquorstore.product;
 
+import com.deerpointgroup.deerpointliquorstore.cart.Cart;
+import com.deerpointgroup.deerpointliquorstore.cart.CartRepository;
 import com.deerpointgroup.deerpointliquorstore.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +15,8 @@ public class ProductRunner implements CommandLineRunner {
     private ProductRepository productRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -26,6 +30,16 @@ public class ProductRunner implements CommandLineRunner {
 
         //users
         userRepository.save(new User("user", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email@gmail.com"));
+        userRepository.save(new User("user1", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email@gmail.com"));
+        userRepository.save(new User("user2", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email@gmail.com"));
+
+        //cart
+        long i = 1;
+        long ii = 2;
+        long iii = 3;
+        cartRepository.save(new Cart(productRepository.getById(i), userRepository.getById(i), 1));
+        cartRepository.save(new Cart(productRepository.getById(ii), userRepository.getById(ii), 1));
+        cartRepository.save(new Cart(productRepository.getById(iii), userRepository.getById(iii), 1));
 
     }
 

@@ -21,6 +21,7 @@ public class Product {
             strategy = GenerationType.SEQUENCE,
             generator = "product_sequence"
     )
+
     private long productID;
     private String productName;
     private String productDescription;

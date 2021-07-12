@@ -12,25 +12,34 @@ public class Cart {
 
     @Id
     @SequenceGenerator(
-            name = "product_sequence",
-            sequenceName = "product_sequence",
+            name = "cart_sequence",
+            sequenceName = "cart_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "product_sequence"
+            generator = "cart_sequence"
     )
     private long cartID;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "productID")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "userID")
     private User user;
 
     private int quantity;
+
+    public Cart(Product product, User user, int quantity) {
+        this.product = product;
+        this.user = user;
+        this.quantity = quantity;
+    }
+
+    public Cart() {
+    }
 
     public Cart(long cartID, Product product, User user, int quantity) {
         this.cartID = cartID;

@@ -60,14 +60,8 @@
 
 
             <!-- Middle Section -->
-            <div class="middle">
-                <img src="/img/logo.png" alt="logo" style="width: 20vw; float: left;">
-                <img src="/img/mid.png" alt="logo">
-
-                <div class="midButton">
-                    <button>Read more</button>
-                </div>
-                <br><br><br>
+            <div class="middleAbout">
+                <img src="/img/productlogo.png" alt="logo" style="width: 20vw; padding-top: 20vh;">
             </div>
             <!-- Middle Section -->
 
@@ -90,16 +84,14 @@
                                 let column = document.createElement("div");
                                 column.className = "column"
 
+                                let productImageTag = document.createElement("img");
+                                productImageTag.src = "/img/" + productName + ".png";
+                                column.appendChild(productImageTag);
 
                                 let productNameH2 = document.createElement("h2");
                                 let productNameText = document.createTextNode(productName);
                                 productNameH2.appendChild(productNameText);
                                 column.appendChild(productNameH2);
-
-                                let productImageTag = document.createElement("img");
-                                productImageTag.src = "/img/" + productName + ".png";
-                                column.appendChild(productImageTag);
-
 
                                 let productPriceH3 = document.createElement("h3");
                                 let productPriceText = document.createTextNode(productPrice);
