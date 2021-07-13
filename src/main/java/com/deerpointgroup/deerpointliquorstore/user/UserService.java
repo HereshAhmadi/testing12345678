@@ -37,7 +37,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RolesRepository rolesRepository;
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     //login
     @Override
