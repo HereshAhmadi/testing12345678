@@ -5,13 +5,20 @@
  */
 package com.deerpointgroup.deerpointliquorstore.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import com.deerpointgroup.deerpointliquorstore.Roles.Role;
+import com.deerpointgroup.deerpointliquorstore.Roles.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,6 +34,10 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RolesRepository rolesRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     //login
     @Override
@@ -34,6 +45,7 @@ public class UserService implements UserDetailsService {
             throws UsernameNotFoundException {
         User user = userRepository.findUserByUsernameIgnoreCase(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Customer not present"));
+
         return user;
     }
 
@@ -77,7 +89,7 @@ public class UserService implements UserDetailsService {
 
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
-        User user = new User(name, password, email);
+        User user = new User(name, password, email, rolesRepository.getById(2L));
         createUser(user);
         return "Account created";
 
