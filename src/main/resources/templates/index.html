@@ -8,38 +8,47 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Deerpoint Liquor Store</title>
+
+        <script>
+         $(document).ready(function(){
+            $('#header').load("/templates/header.html");
+         });
+      </script>
     </head>
     <body>
 
         <div class="main">
+
+            <div id="header"></div>
+
             <div class="top">
-
                 <script>
-                    $.get("/api/user/username", function (data) {
-                        if (data && data.length < 100) {
-                            $("#username").append('<a href="profile">' + data + '</a>');
-                            $("#login").remove();
-                            $("#register").remove();
-                            $(".menu").append('<a href="/logout" id="logout">Logout</a>');
-                        } else {
-                            $("#logout").remove();
-                            $("#cart").remove();
-                        }
-                        console.log(data);
-                    });
-                </script>
-
+$.get("/api/user/username", function(data) {
+    if (data && data.length < 100) {
+        $("#username").append('<a href="profile">' + data + '</a>');
+        $("#login").remove();
+        $("#register").remove();
+        $(".menu").append('<a href="/logout" id="logout">Logout</a>');
+    } else {
+        $("#logout").remove();
+        $("#cart").remove();
+    }
+    console.log(data);
+});
+    </script>
                 <span class="menu">
-                    <a href="index">Home</a>
-                    <a href="about">About</a>
-                    <a href="products">Products</a>
-                    <a href="/api/cart/cartListByUser" id="cart">Cart</a>
+<a href="index">Home</a>
+<a href="about">About</a>
+<a href="products">Products</a>
+<a href="/api/cart/cartListByUser" id="cart">Cart</a>
 
-                    <a href="login" id="login">Log in</a>
-                    <a href="register" id="register">Sign up</a>
-                    <span id ="username"></span>
-                </span>
+<a href="login" id="login">Log in</a>
+<a href="register" id="register">Sign up</a>
+<span id="username"></span>
+</span>
             </div>
+
+
 
             <div class="container">
                 <br><br>

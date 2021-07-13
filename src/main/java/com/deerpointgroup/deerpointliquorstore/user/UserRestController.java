@@ -8,7 +8,12 @@ package com.deerpointgroup.deerpointliquorstore.user;
 import java.io.IOException;
 import java.security.Principal;
 import javax.servlet.ServletException;
+
+import com.deerpointgroup.deerpointliquorstore.Roles.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,6 +66,12 @@ public class UserRestController {
     public String getUserInfo(Principal principal) {
         return userService.loadUserByUsername(principal.getName()).getUsername() + "," +
                 ((User)userService.loadUserByUsername(principal.getName())).getEmail();
+    }
+
+    @RequestMapping(value = "/getRole", method = RequestMethod.GET)
+    public String getRole(Principal principal) {
+        return ((User)userService.loadUserByUsername(principal.getName())).getRole().toString();
+
     }
     
     

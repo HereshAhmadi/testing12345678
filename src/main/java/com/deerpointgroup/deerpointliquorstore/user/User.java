@@ -5,15 +5,14 @@
  */
 package com.deerpointgroup.deerpointliquorstore.user;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import com.deerpointgroup.deerpointliquorstore.Roles.Role;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -35,29 +34,37 @@ public class User implements UserDetails{
             generator = "user_sequence"
     )
     private Long id;
+
+    @Column(unique = true)
     private String username;
-    
+
+    @Column(unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @ManyToOne
+    private Role role;
     
     public User(){
         
     }
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, Role role) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 
     public Long getId() {
         return id;
     }
-
-
     public String getEmail() {
         return email;
     }
+    public Role getRole(){return role;}
 
     public void setId(Long id) {
         this.id = id;
@@ -75,6 +82,8 @@ public class User implements UserDetails{
         this.email = email;
     }
 
+    public void setRole(Role role){this.role = role;}
+
     @Override
     public String toString() {
         return "Customer{" + "id=" + id + ", name=" + username  + ", email=" + email + '}';
@@ -82,7 +91,10 @@ public class User implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "read");
+        List<GrantedAuthority> listRole = new ArrayList<GrantedAuthority>();
+
+        listRole.add(new SimpleGrantedAuthority(role.toString())); // this is the problematic line!
+        return listRole;
     }
 
     @Override
@@ -114,4 +126,5 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return true;
     }
+
 }
