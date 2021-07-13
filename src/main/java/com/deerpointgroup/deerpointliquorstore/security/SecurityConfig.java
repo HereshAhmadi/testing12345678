@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/admin").hasAuthority("admin")
+                .authorizeRequests().antMatchers("/admin", "api/admin/**", "/api/admin**").hasAuthority("admin")
                 .antMatchers("/register**", "/index","/header", "/login", "/", "/css/**", "/img/**","/api/user/register","/api/product","/about","/products", "/api/product/search", "/cart", "/api/cart/cartList" ,"/api/cart/cartListByUser")
                 .permitAll().anyRequest().authenticated()
                 .and()

@@ -42,7 +42,16 @@
             </span>
 </div>
 
-<h1>Hello Admin</h1>
+
+<div id="adminDiv">
+    <script>
+                $.get("/api/admin", function(data) {
+                $("#adminInfo").append(data);
+                });
+            </script>
+
+    <h1 id="adminInfo"></h1>
+</div>
 
 </body>
 </html>
