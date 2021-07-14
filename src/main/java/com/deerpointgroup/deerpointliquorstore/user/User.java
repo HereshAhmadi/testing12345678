@@ -89,12 +89,13 @@ public class User implements UserDetails{
         return "Customer{" + "id=" + id + ", name=" + username  + ", email=" + email + '}';
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> listRole = new ArrayList<GrantedAuthority>();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role.getName()));
 
-        listRole.add(new SimpleGrantedAuthority(role.toString())); // this is the problematic line!
-        return listRole;
+        return authorities;
     }
 
     @Override

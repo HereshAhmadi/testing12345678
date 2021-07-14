@@ -5,16 +5,20 @@
  */
 package com.deerpointgroup.deerpointliquorstore.security;
 
+import com.deerpointgroup.deerpointliquorstore.user.User;
+import com.deerpointgroup.deerpointliquorstore.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
 
 /**
@@ -30,12 +34,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/admin").hasRole("admin")
-                .antMatchers("/register**", "/index","/header", "/login", "/", "/css/**", "/img/**","/api/user/register","/api/product","/about","/products", "/api/product/search", "/api/product/featured", "/api/product/on-sale", "/api/product/mostsold" , "/cart", "/api/cart/cartList" ,"/api/cart/cartListByUser")
+                .authorizeRequests().antMatchers("/admin", "api/admin/**", "/api/admin**").hasAuthority("admin")
+                .antMatchers("/register**", "/index","/header", "/login", "/", "/css/**", "/img/**","/api/user/register","/api/product","/about","/products", "/api/product/search", "/cart", "/api/cart/cartList" ,"/api/cart/cartListByUser")
                 .permitAll().anyRequest().authenticated()
                 .and()
                 .formLogin()

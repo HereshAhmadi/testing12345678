@@ -44,8 +44,14 @@ public class ProductRunner implements CommandLineRunner {
         rolesRepository.save(adminRole);
         rolesRepository.save(customerRole);
 
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("customer"));
+
+        //old code but keep for now please
+//        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//        authorities.add(new SimpleGrantedAuthority("admin"));
+//        authorities.add(new SimpleGrantedAuthority("customer"));
+//
+//        rolesRepository.save(new Role(authorities.get(0).toString()));
+//        rolesRepository.save(new Role(authorities.get(1).toString()));
 
 
 

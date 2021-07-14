@@ -68,11 +68,6 @@ public class UserRestController {
                 ((User)userService.loadUserByUsername(principal.getName())).getEmail();
     }
 
-    @RequestMapping(value = "/getRole", method = RequestMethod.GET)
-    public String getRole(Principal principal) {
-        return ((User)userService.loadUserByUsername(principal.getName())).getRole().toString();
-
-    }
     
     
 }

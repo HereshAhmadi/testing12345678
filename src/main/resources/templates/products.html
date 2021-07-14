@@ -15,9 +15,8 @@
 
     <div class="main">
         <div class="top">
-
             <script>
-                $.get("/api/customer/username", function(data) {
+                $.get("/api/user/username", function(data) {
                     if (data && data.length < 100) {
                         $("#username").append('<a href="profile">' + data + '</a>');
                         $("#login").remove();
@@ -30,18 +29,22 @@
                     console.log(data);
                 });
             </script>
-
             <span class="menu">
-                    <a href="index">Home</a>
-                    <a href="about">About</a>
-                    <a href="#">Products</a>
-            <!--                    <a href="#" id="cart">Cart</a>-->
+<a href="index">Home</a>
+<a href="about">About</a>
+<a href="products">Products</a>
+<a href="/api/cart/cartListByUser" id="cart">Cart</a>
 
-                    <a href="login" id="login">Log in</a>
-                    <a href="register" id="register">Sign up</a>
-                    <span id="username"></span>
+<span sec:authorize="hasAuthority('admin')">
+<a href="admin">admin</a>
+</span>
+
+<a href="login" id="login">Log in</a>
+<a href="register" id="register">Sign up</a>
+<span id="username"></span>
             </span>
         </div>
+
 
         <div class="container">
             <br><br>
