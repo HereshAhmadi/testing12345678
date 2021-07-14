@@ -1,7 +1,6 @@
 package com.deerpointgroup.deerpointliquorstore.Roles;
 import javax.persistence.*;
 import com.deerpointgroup.deerpointliquorstore.user.User;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
