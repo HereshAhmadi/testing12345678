@@ -53,5 +53,45 @@
     <h1 id="adminInfo"></h1>
 </div>
 
+<div class="container">
+    <br><br>
+
+    <script>
+                $.get("/api/product", function(data) {
+                    const products = JSON.stringify(data);
+                    const productObject = JSON.parse(products);
+                    for (let i = 0; i < productObject.length; i++) {
+                        let productName = productObject[i].productName;
+                        let productPrice = productObject[i].productPrice;
+                        $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
+                        $('.cotentFeature').prepend("<button type='submit' value='Delete'>Delete</button>");
+                    }
+                });
+            </script>
+
+
+    <!-- Middle Section -->
+    <div class="middleAbout">
+        <img src="/img/productlogo.png" alt="logo" style="width: 20vw; padding-top: 20vh;">
+    </div>
+    <!-- Middle Section -->
+
+
+    <div class="feature">
+        <h1>Featured Items</h1>
+        <br>
+        <div class="cotentFeature">
+            <!--                        display given product-->
+        </div>
+    </div>
+
+</div>
+</div>
+
+<footer>
+    <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+    <p>Copyright &copy; deerpointliquor</p>
+</footer>
+
 </body>
 </html>
