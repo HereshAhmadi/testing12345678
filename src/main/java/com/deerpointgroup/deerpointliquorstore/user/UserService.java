@@ -89,7 +89,7 @@ public class UserService implements UserDetailsService {
 
         BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
         password = bc.encode(password);
-        User user = new User(name, password, email, rolesRepository.getById(2L));
+        User user = new User(name, password, email, rolesRepository.getById(3L));
         createUser(user);
         return "Account created";
 

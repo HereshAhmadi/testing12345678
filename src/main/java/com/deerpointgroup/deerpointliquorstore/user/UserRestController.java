@@ -62,7 +62,7 @@ public class UserRestController {
     }
     
     
-    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/userInfo", method = RequestMethod.POST)
     public String getUserInfo(Principal principal) {
         return userService.loadUserByUsername(principal.getName()).getUsername() + "," +
                 ((User)userService.loadUserByUsername(principal.getName())).getEmail();
