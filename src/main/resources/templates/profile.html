@@ -47,21 +47,35 @@
 
         </script>
                                 <div class="main">
+
+
                                     <div class="top">
 
+                                        <span class="menu">
+<a href="index">Home</a>
+<a href="about">About</a>
+<a href="products">Products</a>
+<a href="/api/cart/cartListByUser" id="cart">Cart</a>
 
+<span sec:authorize="hasAuthority('admin')">
+<a href="admin">admin</a>
+</span>
 
-                                        <span class="menu"> 
-                                            <a href="index">Home</a>
-                                            <a href="about">About</a>
-                                            <a href="products">Products</a>
-                                            <a href="#" id="cart">Cart</a>
-
-                                            <a href="login" id="login">Log in</a>
-                                            <a href="register" id="register">Sign up</a>
-                                            <span id ="username"></span>
-                                        </span>
+<a href="login" id="login">Log in</a>
+<a href="register" id="register">Sign up</a>
+<span id="username"></span>
+            </span>
                                     </div>
+
+
+
+
+
+
+
+
+
+
                                     <div class="container"> 
                                         <div id="nav">
                                             <img src="/img/logo.png" alt="logo">
@@ -92,26 +106,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-9">
-                                                    <h2>My Orders</h2>
-                                                    <div class="table-responsive">
-                                                        <table>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>ID</th>
-                                                                    <th>DATE</th>
-                                                                    <th>TOTAL</th>
-                                                                    <th>PAID</th>
-                                                                    <th>DELIVERED</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
 
