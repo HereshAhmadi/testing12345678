@@ -46,43 +46,43 @@ public class ProductController {
 
     
 
-    @PostMapping
-    public String newProduct(@RequestParam(required = true) String productName,
-            @RequestParam(required = true) String productDescription,
-            @RequestParam(required = true) int productQuantity,
-            @RequestParam(required = true) double productPrice,
-            @RequestParam(required = true) double productDiscount) {
-
-        if (productName != null && productName.length() > 0) {
-            try {
-                productService.addNewProduct(new Product(productName, productDescription, productQuantity, productPrice));
-                return "Product Added";
-            } catch (Exception e) {
-                return "Product ID already used";
-            }
-
-        } else {
-            return "Passwords do not match";
-        }
-
-    }
+//    @PostMapping
+//    public String newProduct(@RequestParam(required = true) String productName,
+//            @RequestParam(required = true) String productDescription,
+//            @RequestParam(required = true) int productQuantity,
+//            @RequestParam(required = true) double productPrice,
+//            @RequestParam(required = true) double productDiscount) {
+//
+//        if (productName != null && productName.length() > 0) {
+//            try {
+//                productService.addNewProduct(new Product(productName, productDescription, productQuantity, productPrice));
+//                return "Product Added";
+//            } catch (Exception e) {
+//                return "Product ID already used";
+//            }
+//
+//        } else {
+//            return "Passwords do not match";
+//        }
+//
+//    }
 
     //Deleting a product
-    @DeleteMapping(path = "{productID}")
-    public void deleteProduct(@PathVariable("productID") int productID) {
-        productService.deleteProduct(productID);
-    }
+//    @DeleteMapping(path = "{productID}")
+//    public void deleteProduct(@PathVariable("productID") int productID) {
+//        productService.deleteProduct(productID);
+//    }
 
     //for updating
-    @PutMapping(path = "{productID}")
-    public void updateProduct(@PathVariable("productID") int productID,
-            @RequestParam(required = false) String productName,
-            @RequestParam(required = false) String productDescription,
-            @RequestParam(required = false) int productQuantity,
-            @RequestParam(required = false) double productPrice,
-            @RequestParam(required = false) double productDiscount) {
-        productService.updateProduct(productID, productName, productDescription, productQuantity, productPrice, productDiscount);
-    }
+//    @PutMapping(path = "{productID}")
+//    public void updateProduct(@PathVariable("productID") int productID,
+//            @RequestParam(required = false) String productName,
+//            @RequestParam(required = false) String productDescription,
+//            @RequestParam(required = false) int productQuantity,
+//            @RequestParam(required = false) double productPrice,
+//            @RequestParam(required = false) double productDiscount) {
+//        productService.updateProduct(productID, productName, productDescription, productQuantity, productPrice, productDiscount);
+//    }
 
     @RequestMapping(path="/search", method = RequestMethod.GET)
     public List<Product> getAllProducts(@RequestParam(required = true) String name){

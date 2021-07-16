@@ -66,6 +66,21 @@ public class ProductService {
         }
     }
 
+    @Transactional
+    public String productSold(long id, int quantity){
+       Product product =  productRepository.findByProductID(id);
+       if(product.getProductQuantity() == 0 || product.getProductQuantity() - quantity <= 0){
+           return "Cant sell product: \n" + "Current Quantity: " + product.getProductQuantity() + "\n" +
+                   "Requested: " + quantity;
+       }
+
+       product.setProductQuantity(product.getProductQuantity() - quantity);
+
+       productRepository.save(product);
+       return "Product: " + product.getProductName() + "\nQuantity Sold: " + quantity +
+               "\nRemaining Quantity: " + product.getProductQuantity();
+    }
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }

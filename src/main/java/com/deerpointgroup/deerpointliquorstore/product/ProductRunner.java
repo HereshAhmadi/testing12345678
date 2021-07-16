@@ -32,16 +32,18 @@ public class ProductRunner implements CommandLineRunner {
         
         //products
         productRepository.save(new Product("Kim Crowford", "A sauvignon blanc, passion fruit, gooseberry, bursting with flavour. ", 2, 19.99));
-        productRepository.save(new Product("Longshot", "A cabernet sauvignon, Californian wine rich with flavour and ruby in color. ", 1, 16.99));
+        productRepository.save(new Product("Longshot", "A cabernet sauvignon, Californian wine rich with flavour and ruby in color. ", 20, 16.99));
         productRepository.save(new Product("Beringer", "A cabernet sauvignon, dark fruit, chocolar and spice flavours with a hint of vanilla. ", 3, 9.99));
         productRepository.save(new Product("Terermana", "A smooth tequilla, notes of bright citrus with a fresh finish ", 5, 26.99));
         productRepository.save(new Product("Pink Whitney", "Vodka infused with fresh pink lemonade, creating a balance of sweetness and refreshing taste", 8, 29.99));
 
         //roles
         Role adminRole = new Role("admin");
+        Role employeeRole = new Role("employee");
         Role customerRole = new Role("customer");
 
         rolesRepository.save(adminRole);
+        rolesRepository.save(employeeRole);
         rolesRepository.save(customerRole);
 
 
@@ -58,8 +60,8 @@ public class ProductRunner implements CommandLineRunner {
 
         //users
         userRepository.save(new User("user", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email@gmail.com", rolesRepository.getById(1L)));
-        userRepository.save(new User("user1", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email1@gmail.com",rolesRepository.getById(1L)));
-        userRepository.save(new User("user2", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email2@gmail.com",rolesRepository.getById(2L)));
+        userRepository.save(new User("user1", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email1@gmail.com",rolesRepository.getById(2L)));
+        userRepository.save(new User("user2", "$2y$12$oejcFX2l1bgRS1339yd6heJ/aSA/qVSYb68FAAe6w6I.9oji3WmSO", "email2@gmail.com",rolesRepository.getById(3L)));
 
         //cart
         long i = 1;
