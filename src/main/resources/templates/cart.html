@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Cart</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Deerpoint Liquor Store</title>
 </head>
 <body>
 
+<div class="main">
+    <div class="top">
+
+        <script>
+                    $.get("/api/user/username", function (data) {
+                        if (data && data.length < 100) {
+                            $("#username").append('<a href="profile">' + data + '</a>');
+                            $("#login").remove();
+                            $("#register").remove();
+                            $(".menu").append('<a href="/logout" id="logout">Logout</a>');
+                        } else {
+                            $("#logout").remove();
+                            $("#cart").remove();
+                        }
+                        console.log(data);
+                    });
+                </script>
+
+        <span class="menu">
+                    <a href="index">Home</a>
+                    <a href="about">About</a>
+                    <a href="products">Products</a>
+                    <a href="cart" id="cart">Cart</a>
+
+                    <a href="login" id="login">Log in</a>
+                    <a href="register" id="register">Sign up</a>
+                    <span id ="username"></span>
+                </span>
+    </div>
+
+    <div class="container">
+        <br><br>
+
+        <!-- Middle Section -->
+        <div class="middleAbout">
+            <img src="/img/cart.png" alt="logo" style="width: 10vw; padding-top: 10vh; ">
+        </div>
+        <!-- Middle Section -->
+        <div class="reviews">
+            <h1 style="font-size: 3vw;">Cart Page</h1>
+            <h2 style="color: black;">Cart Details</h2>
+            <script>
+                $.get("/api/cart/cartListByUser", function(data) {
+                    const cart = JSON.stringify(data);
+                    const cartObj = JSON.parse(cart);
+
+                    for (let i = 0; i < cartObj.length; i++) {
+                        let productName = cartObj[i].product.productName;
+                        let productPrice = cartObj[i].product.productPrice;
+                        let productQuantity = cartObj[i].quantity;
+                        $('.tablecart').append("<tr><td><h2>" + productQuantity + "</h2></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td></tr>");
+                    }
+
+
+                    console.log(data);
+                });
+            </script>
+
+            <div class="cart">
+                <table class="tablecart"><tr><th>Quantity</th><th>Name</th><th>Price</th></tr>
+                    <!--                        display given product-->
+                </table>
+            </div>
+
+            <br><br>
+            <button style="background-color: #245559; color: white;">Proceed to Checkout</button>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>
+    <p>Copyright &copy; deerpointliquor</p>
+</footer>
 </body>
 </html>
