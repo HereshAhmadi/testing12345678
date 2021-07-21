@@ -1,7 +1,13 @@
 package com.deerpointgroup.deerpointliquorstore.cart;
 
 import com.deerpointgroup.deerpointliquorstore.product.Product;
+import com.deerpointgroup.deerpointliquorstore.product.ProductRepository;
+import com.deerpointgroup.deerpointliquorstore.product.ProductRunner;
+import com.deerpointgroup.deerpointliquorstore.product.ProductService;
 import com.deerpointgroup.deerpointliquorstore.user.User;
+import com.deerpointgroup.deerpointliquorstore.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +15,12 @@ import java.util.List;
 @Service
 public class CartService {
 
-    private final CartRepository cartRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
     public CartService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
@@ -18,7 +29,16 @@ public class CartService {
     public List<Cart> getCartList() {
         return cartRepository.findAll();
     }
+
     public List<Cart> getCartListUser(User user){
         return cartRepository.findByUser(user);
+    }
+    //for delete
+    public Cart getCartProduct(long id){
+        return null;
+    }
+
+    public Cart addNewProductToCart(long productId, long userId, int quantity){
+        return cartRepository.save(new Cart(productRepository.getById(productId), userRepository.getById(userId), quantity));
     }
 }

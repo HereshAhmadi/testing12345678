@@ -5,8 +5,11 @@ import com.deerpointgroup.deerpointliquorstore.user.User;
 import com.deerpointgroup.deerpointliquorstore.user.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletException;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -32,5 +35,12 @@ public class CartController {
         User user = (User) userService.loadUserByUsername(principal.getName());
         return cartService.getCartListUser(user);
     }
+
+//    @RequestMapping(path="/addCart", method = RequestMethod.GET)
+//    public Cart addNewCartItem(@RequestParam(required = true) long productId,
+//                               @RequestParam(required = true) long userId) throws IOException, ServletException {
+//        int quantity = 0;
+//        return cartService.addNewProductToCart(productId,userId,quantity++);
+//    }
 
 }

@@ -356,6 +356,20 @@ padding-bottom: 10px;
     width: 40%;
 }
 
+.tablecart{
+    width: 50%;
+    float:left;
+}
+
+.checkouts{
+padding: 5vw;
+}
+
+.cart{
+    padding-bottom: 30vh;
+}
+
+
 /* Detail section */
 .details{
     text-align: center;
@@ -383,8 +397,8 @@ padding-bottom: 10px;
 #slideshow {
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
-  height: 120vh;
+  width: 90%;
+  height: 130vh;
 }
 
 .reviews button{
