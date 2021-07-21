@@ -38,8 +38,9 @@ public class CartService {
         return null;
     }
 
-    public Cart addNewProductToCart(long productId, long userId, int quantity){
-        return cartRepository.save(new Cart(productRepository.getById(productId), userRepository.getById(userId), quantity));
+    public Cart addNewProductToCart(Cart cart, int quantity){
+        cart.setQuantity(quantity);
+        return cartRepository.save(cart);
     }
 
     public double getCartTotal(User user){
