@@ -43,4 +43,11 @@ public class CartController {
 //        return cartService.addNewProductToCart(productId,userId,quantity++);
 //    }
 
+
+    @RequestMapping(path="/cartTotal", method = RequestMethod.GET)
+    public double getAllProductsInCart(Principal principal){
+        return cartService.getCartTotal((User)userService.loadUserByUsername(principal.getName()));
+
+    }
+
 }

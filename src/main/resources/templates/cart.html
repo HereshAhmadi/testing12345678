@@ -25,7 +25,6 @@
                             $("#logout").remove();
                             $("#cart").remove();
                         }
-                        console.log(data);
                     });
                 </script>
 
@@ -50,51 +49,55 @@
         </div>
         <!-- Middle Section -->
         <div class="reviews">
-            <h1 style="font-size: 3vw;">Your Cart</h1>
-
+            <h1 style="font-size: 3vw;">Cart Page</h1>
+            <h2 style="color: black;">Cart Details</h2>
             <script>
                 $.get("/api/cart/cartListByUser", function(data) {
                     const cart = JSON.stringify(data);
                     const cartObj = JSON.parse(cart);
-                    let subtotal = 0;
+
                     for (let i = 0; i < cartObj.length; i++) {
                         let productName = cartObj[i].product.productName;
                         let productPrice = cartObj[i].product.productPrice;
                         let productQuantity = cartObj[i].quantity;
-                        $('.tablecart').append("<tr><td><input type='number' min='1' max='5' value='"+productQuantity+"'></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td><td><button>X</button></td>></tr>");
-                        subtotal+=productPrice;
+                        $('.tablecart').append("<tr><td><h2>" + productQuantity + "</h2></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td></tr>");
                     }
-                    $('.checkouts').prepend("<h2>Subtotal: $<strong>" + subtotal + "</strong></h2>");
-                    console.log(data);
+
                 });
             </script>
 
             <div class="cart">
-                <table class="tablecart"><tr><th><button style="background-color: #245559; color: white; padding: 5%;">Save Changes</button></th><th><h2 style="color: black;">Cart Details</h2></th></tr><tr><th><h2>Quantity</h2></th><th><h2>Name</h2></th><th><h2>Price</h2></th><th><h2>Delete</h2></th></tr>
+                <table class="tablecart"><tr><th>Quantity</th><th>Name</th><th>Price</th></tr>
                     <!--                        display given product-->
                 </table>
-                <div class="checkouts">
-                    <button style="background-color: #245559; color: white;">Proceed to Checkout</button>
-                    <button style="background-color: orange; color: white;" onclick="location.href = 'https://www.skipthedishes.com/deer-point-liquor-store';">Get it Delivered</button>
-                </div>
             </div>
-<!--            <script>-->
-<!--                        function addCart() {-->
-<!--                            $.post("/api/user/addCart", {-->
-<!--                                name: $("#name").val(),-->
-<!--                                password: $("#password").val(),-->
-<!--                                passwordRepeat: $("#passwordRepeat").val(),-->
-<!--                                email: $("#email").val()-->
-<!--                            }).done(function (data) {-->
-<!--                                 document.getElementById("result").innerHTML = data;-->
-<!--                            });-->
-<!--                        }-->
-<!--                    </script>-->
-            <br><br>
 
+<!--            <br><br>-->
+<!--            <button style="background-color: #245559; color: white;">Proceed to Checkout</button>-->
         </div>
 
     </div>
+</div>
+
+<div>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <form action='cart/pay' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type='hidden' th:value='${amount/100}' name='amount' />
+        <h1>Price:<span th:text='${amount / 100}' /></h1>
+        <script
+                src='https://checkout.stripe.com/checkout.js'
+                class='stripe-button'
+                th:attr='data-key=${stripePublicKey}'
+                data-name='DeerPoint Liquor Store'
+                data-description='Product Checkout'
+                data-image
+                        ='/img/logo.png'
+                data-locale='auto'
+                data-zip-code='false'>
+        </script>
+    </form>
+
 </div>
 
 <footer>
