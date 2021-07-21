@@ -25,7 +25,6 @@
                             $("#logout").remove();
                             $("#cart").remove();
                         }
-                        console.log(data);
                     });
                 </script>
 
@@ -64,8 +63,6 @@
                         $('.tablecart').append("<tr><td><h2>" + productQuantity + "</h2></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td></tr>");
                     }
 
-
-                    console.log(data);
                 });
             </script>
 
@@ -75,11 +72,32 @@
                 </table>
             </div>
 
-            <br><br>
-            <button style="background-color: #245559; color: white;">Proceed to Checkout</button>
+<!--            <br><br>-->
+<!--            <button style="background-color: #245559; color: white;">Proceed to Checkout</button>-->
         </div>
 
     </div>
+</div>
+
+<div>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <form action='cart/pay' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
+        <input type='hidden' th:value='${amount/100}' name='amount' />
+        <h1>Price:<span th:text='${amount / 100}' /></h1>
+        <script
+                src='https://checkout.stripe.com/checkout.js'
+                class='stripe-button'
+                th:attr='data-key=${stripePublicKey}'
+                data-name='DeerPoint Liquor Store'
+                data-description='Product Checkout'
+                data-image
+                        ='/img/logo.png'
+                data-locale='auto'
+                data-zip-code='false'>
+        </script>
+    </form>
+
 </div>
 
 <footer>
