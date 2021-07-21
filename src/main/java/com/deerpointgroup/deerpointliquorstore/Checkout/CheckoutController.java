@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @Controller
+@RequestMapping("/cart")
 public class CheckoutController {
 
     @Value("${STRIPE_PUBLIC_KEY}")
@@ -28,27 +29,31 @@ public class CheckoutController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/cart", method=RequestMethod.GET)
+    @GetMapping
     public String checkout(Model model, Principal principal){
         model.addAttribute("amount", cartService.getCartTotal((User)userService.loadUserByUsername(principal.getName())) * 100);
         model.addAttribute("stripePublicKey", stripePublicKey);
         return "cart";
     }
 
-    @PostMapping("/cart/pay")
-    public String chargeCard(HttpServletRequest request) throws Exception {
+    @PostMapping()
+    public Model chargeCard(HttpServletRequest request,Model model) throws Exception {
         String token = request.getParameter("stripeToken");
         Double amount = Double.parseDouble(request.getParameter("amount"));
         stripeService.chargeNewCard(token, amount);
-        System.out.println("Success");
-        return "success";
+
+        model.addAttribute("amount",amount * 100);
+        model.addAttribute("stripePublicKey", token);
+        model.addAttribute("success", "success");
+        return model;
     }
 
 
     @ExceptionHandler(StripeException.class)
-    public String handleError(Model model, StripeException ex) {
-        model.addAttribute("error", ex.getMessage());
-        return "fail";
+    public Model handleError(Model model, StripeException ex) {
+        model.addAttribute("error", "fail");
+        return model;
     }
+
 
 }

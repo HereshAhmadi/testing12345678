@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/design.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <title>Deerpoint Liquor Store</title>
 </head>
 <body>
@@ -79,10 +79,21 @@
     </div>
 </div>
 
+<script>
+$.get("/api/cart/cartTotal", function (data) {
+        if(data <= 0){
+         document.getElementById("checkout-form").remove();
+        }else{
+         document.body.appendChild(document.getElementById("checkout-form"));
+        }
+    });
+
+</script>
+
 <div>
     <script src="https://js.stripe.com/v3/"></script>
 
-    <form action='cart/pay' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
+    <form action='/cart' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
         <input type='hidden' th:value='${amount/100}' name='amount' />
         <h1>Price:<span th:text='${amount / 100}' /></h1>
         <script
@@ -91,13 +102,13 @@
                 th:attr='data-key=${stripePublicKey}'
                 data-name='DeerPoint Liquor Store'
                 data-description='Product Checkout'
-                data-image
-                        ='/img/logo.png'
+                data-image='/img/logo.png'
                 data-locale='auto'
                 data-zip-code='false'>
         </script>
     </form>
 
+    <h1><span th:text='${success}' /></h1>
 </div>
 
 <footer>
