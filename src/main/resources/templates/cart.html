@@ -60,14 +60,24 @@
                         let productName = cartObj[i].product.productName;
                         let productPrice = cartObj[i].product.productPrice;
                         let productQuantity = cartObj[i].quantity;
-                        $('.tablecart').append("<tr><td><h2>" + productQuantity + "</h2></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td></tr>");
+                        $('.tablecart').append("<tr><td><h2><input type='text' id='quantity' value=" + productQuantity + "></h2></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td></tr>");
                     }
 
                 });
+
+                function updateCart() {
+                    console.log('Hello darkness my friend');
+                    $.post("/api/cart/updateCart", {
+                        quantity: $("#quantity").val()
+                    }).done(function (data) {
+
+                    });
+                }
+
             </script>
 
             <div class="cart">
-                <table class="tablecart"><tr><th>Quantity</th><th>Name</th><th>Price</th></tr>
+                <table class="tablecart"><tr><th>Quantity<button onclick="updateCart()" type="submit" id="addQuantity">Update</button></th><th>Name</th><th>Price</th></tr>
                     <!--                        display given product-->
                 </table>
             </div>
