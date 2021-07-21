@@ -46,12 +46,18 @@
 <div class="container">
     <br><br>
 
+    <!--script for getting the employee information-->
     <script>
-        $.get("/info", function(data) {
-            const empInformation = JSON.stringify(data);
-            const empInfoObject = JSON.parse(empInformation);
-            for (let i = 0; i < empInfoObject.length; i++) {
-                }
+        $.get("/api/employee/info", function(data) {
+
+            $(".empInfo").append(data);
+            });
+    </script>
+
+    <!--script for getting the employee transaction history-->
+    <script>
+        $.get("/api/employee/productSold", function(data) {
+            $(".empTransac").append(data);
             });
     </script>
 
@@ -60,23 +66,23 @@
     <div class="middleAbout">
         <h1>EMPLOYEE PAGE</h1>
 
-        <div class ="employeeLinks">
-        <h2> <a href="/info">Employee Info </a> | <a href="productSold">Transactions</a></h2>
-        </div>
+<!--        <div class ="employeeLinks">-->
+<!--        <h2> <a href="/info">Employee Info </a> | <a href="productSold">Transactions</a></h2>-->
+<!--        </div>-->
 
     </div>
     <!-- Middle Section -->
     <div class="empInfoAndTransac">
 
         <div class="empInfo">
+            <h2 style="text-align: left;">Username | User Role</h2>
             <!-- display employee info using script-->
-            <p>FILLER FOR EMPLOYEE INFO</p>
         </div>
 
 
         <div class="empTransac">
+            <h2 style="text-align: right;">Employee Transaction History</h2>
             <!-- display employee transactions using script-->
-            <p>FILLER FOR EMPLOYEE TRANSACTIONS</p>
         </div>
     </div>
 
