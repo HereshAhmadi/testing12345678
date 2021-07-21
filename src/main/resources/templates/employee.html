@@ -47,18 +47,6 @@
     <br><br>
 
     <script>
-                $.get("/api/product", function(data) {
-                    const products = JSON.stringify(data);
-                    const productObject = JSON.parse(products);
-                    for (let i = 0; i < productObject.length; i++) {
-                        let productName = productObject[i].productName;
-                        let productPrice = productObject[i].productPrice;
-                        $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
-                    }
-                });
-    </script>
-
-    <script>
         $.get("/info", function(data) {
             const empInformation = JSON.stringify(data);
             const empInfoObject = JSON.parse(empInformation);
@@ -79,27 +67,20 @@
     </div>
     <!-- Middle Section -->
     <div class="empInfoAndTransac">
-        <p>FILLER FOR EMPLOYEE INFO</p>
 
         <div class="empInfo">
             <!-- display employee info using script-->
+            <p>FILLER FOR EMPLOYEE INFO</p>
         </div>
 
-        <p>FILLER FOR EMPLOYEE TRANSACTIONS</p>
 
         <div class="empTransac">
             <!-- display employee transactions using script-->
+            <p>FILLER FOR EMPLOYEE TRANSACTIONS</p>
         </div>
     </div>
 
 
-    <div class="feature">
-        <h1>Featured Items</h1>
-        <br>
-        <div class="cotentFeature">
-            <!--                        display given product-->
-        </div>
-    </div>
 
 
 <footer>
