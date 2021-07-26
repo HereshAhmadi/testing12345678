@@ -51,4 +51,12 @@ public class CartService {
 
         return total;
     }
+
+    public void deleteAll(User user){
+       List<Cart> userCart = cartRepository.findByUser(user);
+        for(int i = 0; i < userCart.size(); i++){
+            cartRepository.delete(userCart.get(i));
+        }
+    }
+
 }

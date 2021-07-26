@@ -1,5 +1,6 @@
 package com.deerpointgroup.deerpointliquorstore.employee;
 
+import com.deerpointgroup.deerpointliquorstore.order.OrdersService;
 import com.deerpointgroup.deerpointliquorstore.product.ProductService;
 import com.deerpointgroup.deerpointliquorstore.user.User;
 import com.deerpointgroup.deerpointliquorstore.user.UserService;
@@ -24,6 +25,9 @@ public class EmployeeController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    OrdersService ordersService;
+
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public String getInfo(Principal principal){
         return userService.loadUserByUsername(principal.getName()).getUsername() + "," +
@@ -38,6 +42,7 @@ public class EmployeeController {
         String result = productService.productSold(id, quantity);
         return result;
     }
+
 
 
 }

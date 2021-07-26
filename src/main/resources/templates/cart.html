@@ -56,18 +56,48 @@
                     const cart = JSON.stringify(data);
                     const cartObj = JSON.parse(cart);
 
-                    for (let i = 0; i < cartObj.length; i++) {
+                    if(cartObj.length <= 0){
+                        document.getElementById("cartTable").remove();
+                    }else{
+                     for (let i = 0; i < cartObj.length; i++) {
                         let productName = cartObj[i].product.productName;
                         let productPrice = cartObj[i].product.productPrice;
                         let productQuantity = cartObj[i].quantity;
                         $('.tablecart').append("<tr><td><h2>" + productQuantity + "</h2></td><td><h2>" + productName + "</h2></td><td><h3>$" + productPrice + "</h3></td></tr>");
+                     }
                     }
 
                 });
             </script>
 
-            <div class="cart">
-                <table class="tablecart"><tr><th>Quantity</th><th>Name</th><th>Price</th></tr>
+            <script>
+                $.get("/api/user/orders", function(data) {
+                    const cart = JSON.stringify(data);
+                    const cartObj = JSON.parse(cart);
+
+                    if(cartObj.length <= 0){
+                         document.getElementById("ordersTable").remove();
+                    }else{
+                        for (let i = 0; i < cartObj.length; i++) {
+                            let productName = cartObj[i].product.productName;
+                            let orderCode = cartObj[i].orderCode;
+                            let quantity = cartObj[i].product.productQuantity;
+                            $('#ordersTable').append("<tr><td>" + orderCode + "</td>" + "<td>" + productName + "</td>" + "<td>" + quantity + "</td><tr>");
+                        }
+                    }
+                });
+            </script>
+
+            <div id="orders">
+               <table id="ordersTable">
+                   <th>OrderCode</th>
+                   <th>Product</th>
+                   <th>Quantity</th>
+               </table>
+            </div>
+
+            <div class="cart" >
+                <table id="cartTable" class="tablecart"><tr><th>Quantity</th><th>Name</th><th>Price</th></tr>
                     <!--                        display given product-->
                 </table>
             </div>

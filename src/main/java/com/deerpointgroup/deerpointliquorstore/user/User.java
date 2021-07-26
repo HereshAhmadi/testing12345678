@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.deerpointgroup.deerpointliquorstore.Roles.Role;
+import com.deerpointgroup.deerpointliquorstore.order.Orders;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +44,7 @@ public class User implements UserDetails{
 
     @Column(nullable = false)
     private String password;
+
 
     @ManyToOne
     private Role role;
@@ -83,6 +85,7 @@ public class User implements UserDetails{
     }
 
     public void setRole(Role role){this.role = role;}
+
 
     @Override
     public String toString() {

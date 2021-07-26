@@ -39,6 +39,11 @@ body::after {
     text-align: center;
 }
 
+#ordersTable{
+    width: 50%;
+    float:left;
+}
+
 .top a{
     text-decoration: none;
     color: white;

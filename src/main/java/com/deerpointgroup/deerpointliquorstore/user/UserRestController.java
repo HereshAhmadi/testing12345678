@@ -7,18 +7,17 @@ package com.deerpointgroup.deerpointliquorstore.user;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import javax.servlet.ServletException;
 
 import com.deerpointgroup.deerpointliquorstore.Roles.Role;
+import com.deerpointgroup.deerpointliquorstore.order.Orders;
+import com.deerpointgroup.deerpointliquorstore.order.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -29,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserRestController {
 
     private final UserService userService;
+
+    @Autowired
+    OrdersService ordersService;
 
     @Autowired
     public UserRestController(UserService userService) {
@@ -68,6 +70,14 @@ public class UserRestController {
                 ((User)userService.loadUserByUsername(principal.getName())).getEmail();
     }
 
-    
-    
+    @GetMapping("/orders")
+    public List<Orders> getUserOrders(Principal principal){
+        long userID = ((User)userService.loadUserByUsername(principal.getName())).getId();
+
+        return ordersService.getAllOrders(userID);
+    }
+
+
+
+
 }
