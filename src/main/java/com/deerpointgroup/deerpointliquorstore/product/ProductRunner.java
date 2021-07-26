@@ -14,6 +14,7 @@ import com.deerpointgroup.deerpointliquorstore.user.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ProductRunner implements CommandLineRunner {
@@ -36,6 +37,7 @@ public class ProductRunner implements CommandLineRunner {
         productRepository.save(new Product("Beringer", "A cabernet sauvignon, dark fruit, chocolar and spice flavours with a hint of vanilla. ", 3, 9.99));
         productRepository.save(new Product("Terermana", "A smooth tequilla, notes of bright citrus with a fresh finish ", 5, 26.99));
         productRepository.save(new Product("Pink Whitney", "Vodka infused with fresh pink lemonade, creating a balance of sweetness and refreshing taste", 8, 29.99));
+        productRepository.save(new Product("TEST_PRODUCT", "TEST_PRODUCT_DESCRIPTION", 999, 999.99));
 
         //roles
         Role adminRole = new Role("admin");

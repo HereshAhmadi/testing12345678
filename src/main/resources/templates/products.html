@@ -53,16 +53,39 @@
                 $.get("/api/product", function(data) {
                     const products = JSON.stringify(data);
                     const productObject = JSON.parse(products);
-                    for (let i = 0; i < productObject.length; i++) {
+                    for (let i = 0; i < 5; i++) {
                         let productName = productObject[i].productName;
                         let productPrice = productObject[i].productPrice;
                         $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
                     }
                 });
             </script>
-            <script>
 
-                    </script>
+            <script>
+                $.get("/api/product", function(data) {
+                    const products = JSON.stringify(data);
+                    const productObject = JSON.parse(products);
+                    for (let i = 0; i < 5; i++) {
+                        let productName = productObject[i].productName;
+                        let productPrice = productObject[i].productPrice;
+                        $('.contentOnSale').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
+                    }
+                });
+            </script>
+
+            <script>
+                $.get("/api/product", function(data) {
+                    const products = JSON.stringify(data);
+                    const productObject = JSON.parse(products);
+                    for (let i = 0; i < 5; i++) {
+                        let productName = productObject[i].productName;
+                        let productPrice = productObject[i].productPrice;
+                        $('.contentMostSold').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br> <a><h2>" + productName + "<br></h2></a> <h3>$" + productPrice) + "</h3>";
+                    }
+
+                });
+            </script>
+
 
             <!-- Middle Section -->
             <div class="middleAbout">
@@ -84,7 +107,7 @@
                             for (let i = 0; i < productObject.length; i++) {
                                 let productName = productObject[i].productName;
                                 let productPrice = productObject[i].productPrice;
-                                let productID = productObject[i].productID;
+
 
                                 let column = document.createElement("div");
                                 column.className = "column"
@@ -102,19 +125,6 @@
                                 let productPriceText = document.createTextNode(productPrice);
                                 productPriceH3.appendChild(productPriceText);
                                 column.appendChild(productPriceH3);
-
-                                let button = document.createElement("button");
-                                let buttonText = document.createTextNode("Add");
-                                button.appendChild(buttonText);
-                                button.onclick = function add() {
-                                                        $.post("/api/cart/addCart", {
-                                                            productId: productID
-                                                        }).done(function (data) {
-                                                            console.log(productID);
-                                                        });
-                                                    }
-                                column.appendChild(button);
-
 
 
                                 document.getElementById("contentSearch").appendChild(column);
@@ -142,13 +152,28 @@
             <!--        </div>-->
 
             <div class="feature">
-                <h1>Featured Items</h1>
+                <a href="/api/product/featured"><h1>Featured Items</h1></a>
                 <br>
                 <div class="cotentFeature">
                     <!--                        display given product-->
                 </div>
             </div>
 
+            <div class="onSale">
+                <a href="/api/product/on-sale"><h1>On-Sale Items</h1></a>
+                <br>
+                <div class="contentOnSale">
+                    <!--                        display given product-->
+                </div>
+            </div>
+
+            <div class="mostSold">
+                <a href="/api/product/mostsold"><h1>Most Sold Items</h1></a>
+                <br>
+                <div class="contentMostSold">
+                    <!--                        display given product-->
+                </div>
+            </div>
         </div>
     </div>
 

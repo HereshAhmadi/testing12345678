@@ -56,6 +56,11 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    public Cart updateQuantity(Cart cart, int quantity){
+        cart.setQuantity(quantity);
+        return cartRepository.save(cart);
+    }
+
     public double getCartTotal(User user){
         double total = 0;
         List<Cart> userCarts = cartRepository.findByUser(user);
