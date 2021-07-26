@@ -11,6 +11,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CartService {
@@ -33,13 +34,26 @@ public class CartService {
     public List<Cart> getCartListUser(User user){
         return cartRepository.findByUser(user);
     }
-    //for delete
-    public Cart getCartProduct(long id){
-        return null;
-    }
+
+    //for delete and add
+//    public Cart getCartProductForThatSpecificUser(User user, String productName){
+//        List<Cart> userCarts = cartRepository.findByUser(user);
+//        for(int i = 0; i < userCarts.size(); i++){
+//
+//            if((userCarts.get(i).getProduct().getProductName().equals(productName))){
+//                return userCarts.get(i);
+//            }
+//        }
+//        return null;
+//    }
 
     public Cart addNewProductToCart(long productId, long userId, int quantity){
-        return cartRepository.save(new Cart(productRepository.getById(productId), userRepository.getById(userId), quantity));
+        return cartRepository.save(new Cart(productRepository.findByProductID(productId), userRepository.getById(userId), quantity));
+    }
+
+    public Cart updateCart(Cart cart, int quantity){
+        cart.setQuantity(quantity);
+        return cartRepository.save(cart);
     }
 
     public double getCartTotal(User user){

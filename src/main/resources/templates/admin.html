@@ -50,6 +50,18 @@
                 });
             </script>
 
+                    <script>
+                        function add(anything) {
+                            $.post("/api/cart/addCart", {
+                                productId: anything
+                            }).done(function (data) {
+
+                            });
+                            console.log(anything);
+                        }
+                    </script>
+    <p id="result"></p>
+
     <h1 id="adminInfo"></h1>
 </div>
 
@@ -63,8 +75,9 @@
                     for (let i = 0; i < productObject.length; i++) {
                         let productName = productObject[i].productName;
                         let productPrice = productObject[i].productPrice;
-                        $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
-                        $('.cotentFeature').prepend("<button type='submit' value='Delete'>Delete</button>");
+                        let productID = productObject[i].productID;
+                        $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2 id='productName'>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
+                        $('.cotentFeature').prepend("<button onclick='add("+ productID +")'>Add</button>");
                     }
                 });
             </script>
@@ -87,6 +100,8 @@
 
 </div>
 </div>
+
+
 
 <footer>
     <span class="homefoot"><br><i class="fa fa-phone"></i>+5877007000<br><i class="fa fa-envelope"></i> deerpointliquor@gmail.com</span>

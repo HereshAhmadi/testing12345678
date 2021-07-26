@@ -1,6 +1,7 @@
 package com.deerpointgroup.deerpointliquorstore.cart;
 
 
+import com.deerpointgroup.deerpointliquorstore.product.Product;
 import com.deerpointgroup.deerpointliquorstore.user.User;
 import com.deerpointgroup.deerpointliquorstore.user.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,18 +37,29 @@ public class CartController {
         return cartService.getCartListUser(user);
     }
 
-//    @RequestMapping(path="/addCart", method = RequestMethod.GET)
-//    public Cart addNewCartItem(@RequestParam(required = true) long productId,
-//                               @RequestParam(required = true) long userId) throws IOException, ServletException {
-//        int quantity = 0;
-//        return cartService.addNewProductToCart(productId,userId,quantity++);
-//    }
-
+    @RequestMapping(path="/addCart", method = RequestMethod.POST)
+    public Cart addNewCartItem(Principal principal, @RequestParam(required = true) long productId){
+        List<Cart> listCart = cartService.getCartListUser( ( (User) userService.loadUserByUsername(principal.getName())) );
+        int quantity = 0;
+        for(int i = 0; i < listCart.size(); i++){
+            if(listCart.get(i).getProduct().getProductID() == productId){
+                quantity = listCart.get(i).getQuantity()+1;
+                return cartService.updateCart(listCart.get(i), quantity);
+            }else{
+                return cartService.addNewProductToCart(productId,( (User) userService.loadUserByUsername(principal.getName()) ).getId() , quantity+1);
+            }
+        }
+        return null;
+    }
 
     @RequestMapping(path="/cartTotal", method = RequestMethod.GET)
     public double getAllProductsInCart(Principal principal){
         return cartService.getCartTotal((User)userService.loadUserByUsername(principal.getName()));
-
     }
+
+//    @RequestMapping(path="/cartProduct", method = RequestMethod.GET)
+//    public Cart getProduct(Principal principal, @RequestParam(required = true) String productName){
+//        return cartService.getCartProductForThatSpecificUser((User) userService.loadUserByUsername(principal.getName()),productName);
+//    }
 
 }
