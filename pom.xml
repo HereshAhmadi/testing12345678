@@ -13,9 +13,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>deerpointliquorstore1</name>
     <description>Capstone project for DeerPoint LiquorStore</description>
-    <properties>
-        <java.version>16</java.version>
-    </properties>
+<!--    <properties>-->
+<!--        <java.version>14</java.version>-->
+<!--    </properties>-->
     <dependencies>
         
         <dependency>
