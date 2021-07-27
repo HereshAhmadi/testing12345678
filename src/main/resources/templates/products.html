@@ -107,6 +107,7 @@
                             for (let i = 0; i < productObject.length; i++) {
                                 let productName = productObject[i].productName;
                                 let productPrice = productObject[i].productPrice;
+                                let productID = productObject[i].productID;
 
 
                                 let column = document.createElement("div");
@@ -126,6 +127,29 @@
                                 productPriceH3.appendChild(productPriceText);
                                 column.appendChild(productPriceH3);
 
+                                let button = document.createElement("button");
+                                let buttonText = document.createTextNode("Add");
+                                button.appendChild(buttonText);
+                                button.onclick = function add() {
+                                                        $.post("/api/cart/addCart", {
+                                                            productId: productID
+                                                        }).done(function (data) {
+                                                            alert("Product Added on Cart")
+                                                        });
+                                                    }
+                                column.appendChild(button);
+
+                                let buttonDel = document.createElement("button");
+                                let buttonTextDel = document.createTextNode("Delete");
+                                buttonDel.appendChild(buttonTextDel);
+                                buttonDel.onclick = function deleteCart() {
+                                                        $.post("/api/cart/deleteCart", {
+                                                            productId: productID
+                                                        }).done(function (data) {
+                                                            alert("Product Deleted on Cart")
+                                                        });
+                                                    }
+                                column.appendChild(buttonDel);
 
                                 document.getElementById("contentSearch").appendChild(column);
                             }

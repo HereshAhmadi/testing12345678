@@ -70,9 +70,9 @@ public class ProductRunner implements CommandLineRunner {
         long ii = 2;
         long iii = 3;
         cartRepository.save(new Cart(productRepository.getById(i), userRepository.getById(i), 1));
+        cartRepository.save(new Cart(productRepository.getById(i), userRepository.getById(ii), 1));
         cartRepository.save(new Cart(productRepository.getById(ii), userRepository.getById(ii), 1));
-        cartRepository.save(new Cart(productRepository.getById(ii), userRepository.getById(ii), 1));
-        cartRepository.save(new Cart(productRepository.getById(ii), userRepository.getById(ii), 1));
+        cartRepository.save(new Cart(productRepository.getById(iii), userRepository.getById(ii), 1));
         cartRepository.save(new Cart(productRepository.getById(iii), userRepository.getById(iii), 1));
 
     }

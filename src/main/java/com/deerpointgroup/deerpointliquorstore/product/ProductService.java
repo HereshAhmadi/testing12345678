@@ -101,4 +101,8 @@ public class ProductService {
         return productRepository.findByProductNameContainingIgnoreCase(name);
     }
 
+    public Product getProductUsingId(long id){
+        return productRepository.findByProductID(id);
+    }
+
 }

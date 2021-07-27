@@ -39,7 +39,16 @@
                     <span id ="username"></span>
                 </span>
     </div>
+    <script>
+                            function delete(anything) {
+                            $.post("/api/cart/deleteCart", {
+                                productId: anything
+                            }).done(function (data) {
 
+                            });
+                            console.log(anything);
+                        }
+    </script>
     <div class="container">
         <br><br>
 
