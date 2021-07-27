@@ -31,7 +31,17 @@
 <a href="about">About</a>
 <a href="products">Products</a>
 <a href="cart" id="cart">Cart</a>
+        <!--delete script-->
+                    <script>
+                        function deleteCart(anything) {
+                            $.post("/api/cart/deleteCart", {
+                                productId: anything
+                            }).done(function (data) {
 
+                            });
+                            console.log(anything);
+                        }
+                    </script>
 <span sec:authorize="hasAuthority('admin')">
 <a href="admin">admin</a>
 </span>
@@ -49,7 +59,7 @@
                 $("#adminInfo").append(data);
                 });
             </script>
-
+<!--add script-->
                     <script>
                         function add(anything) {
                             $.post("/api/cart/addCart", {
@@ -59,11 +69,13 @@
                             });
                             console.log(anything);
                         }
+
                     </script>
     <p id="result"></p>
 
     <h1 id="adminInfo"></h1>
 </div>
+
 
 <div class="container">
     <br><br>
@@ -78,6 +90,7 @@
                         let productID = productObject[i].productID;
                         $('.cotentFeature').prepend("<img src='/img/" + productName + ".png'" + "/>" + "<br><h2 id='productName'>" + productName + "<br><h3>$" + productPrice) + "</h3></h2>";
                         $('.cotentFeature').prepend("<button onclick='add("+ productID +")'>Add</button>");
+                        $('.cotentFeature').prepend("<button onclick='deleteCart("+ productID +")'>Delete</button>");
                     }
                 });
             </script>

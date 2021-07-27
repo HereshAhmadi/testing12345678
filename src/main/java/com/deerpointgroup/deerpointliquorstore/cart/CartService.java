@@ -51,11 +51,18 @@ public class CartService {
         return cartRepository.save(new Cart(productRepository.findByProductID(productId), userRepository.getById(userId), quantity));
     }
 
+    //my update when adding
     public Cart updateCart(Cart cart, int quantity){
         cart.setQuantity(quantity);
         return cartRepository.save(cart);
     }
 
+    public Cart deleteCart(long cartId){
+        cartRepository.deleteById(cartId);
+        return cartRepository.getById(cartId);
+    }
+
+    //nam code
     public Cart updateQuantity(Cart cart, int quantity){
         cart.setQuantity(quantity);
         return cartRepository.save(cart);

@@ -2,6 +2,7 @@ package com.deerpointgroup.deerpointliquorstore.cart;
 
 
 import com.deerpointgroup.deerpointliquorstore.product.Product;
+import com.deerpointgroup.deerpointliquorstore.product.ProductService;
 import com.deerpointgroup.deerpointliquorstore.user.User;
 import com.deerpointgroup.deerpointliquorstore.user.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,12 @@ public class CartController {
 
     private final CartService cartService;
     private final UserService userService;
+    private final ProductService productService;
 
-    public CartController(CartService cartService, UserService userService) {
+    public CartController(CartService cartService, UserService userService, ProductService productService) {
         this.cartService = cartService;
         this.userService = userService;
+        this.productService = productService;
     }
 
     @RequestMapping(path="/cartList", method = RequestMethod.GET)
@@ -42,13 +45,32 @@ public class CartController {
         List<Cart> listCart = cartService.getCartListUser( ( (User) userService.loadUserByUsername(principal.getName())) );
         int quantity = 0;
         for(int i = 0; i < listCart.size(); i++){
+
             if(listCart.get(i).getProduct().getProductID() == productId){
                 quantity = listCart.get(i).getQuantity()+1;
-                return cartService.updateCart(listCart.get(i), quantity);
-            }else{
-                return cartService.addNewProductToCart(productId,( (User) userService.loadUserByUsername(principal.getName()) ).getId() , quantity+1);
+                 return cartService.updateCart(listCart.get(i), quantity);
             }
         }
+        if(!(listCart.contains(productId))){
+            return cartService.addNewProductToCart(productId,( (User) userService.loadUserByUsername(principal.getName()) ).getId() , quantity+1);
+        }
+        return null;
+    }
+
+    @RequestMapping(path="/deleteCart", method = RequestMethod.POST)
+    public Cart deleteItemCart(Principal principal, @RequestParam(required = true) long productId){
+        List<Cart> listCart = cartService.getCartListUser( ( (User) userService.loadUserByUsername(principal.getName())) );
+        int quantity = 0;
+        for(int i = 0; i < listCart.size(); i++){
+            if(listCart.get(i).getProduct().getProductID() == productId){
+                if(listCart.get(i).getQuantity() == 1 && listCart.get(i).getProduct().getProductID() == productId) {
+                    return cartService.deleteCart(listCart.get(i).getCartID());
+                }else{
+                    return cartService.updateQuantity(listCart.get(i), listCart.get(i).getQuantity()-1);
+                }
+            }
+        }
+
         return null;
     }
 
@@ -57,9 +79,5 @@ public class CartController {
         return cartService.getCartTotal((User)userService.loadUserByUsername(principal.getName()));
     }
 
-//    @RequestMapping(path="/cartProduct", method = RequestMethod.GET)
-//    public Cart getProduct(Principal principal, @RequestParam(required = true) String productName){
-//        return cartService.getCartProductForThatSpecificUser((User) userService.loadUserByUsername(principal.getName()),productName);
-//    }
 
 }
