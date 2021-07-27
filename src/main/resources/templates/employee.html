@@ -23,7 +23,6 @@
                         $("#logout").remove();
                         $("#cart").remove();
                     }
-                    console.log(data);
                 });
             </script>
     <span class="menu">
@@ -84,9 +83,41 @@
             <h2 style="text-align: right;">Employee Transaction History</h2>
             <!-- display employee transactions using script-->
         </div>
+
+<script>
+  function search() {
+      $.post("api/orders/orderCode", {
+          orderCode: $("#orderCodeText").val(),
+      }).done(function(data) {
+               const cart = JSON.stringify(data);
+                    const cartObj = JSON.parse(cart);
+
+                        for (let i = 0; i < cartObj.length; i++) {
+                            let productName = cartObj[i].product.productName;
+                            let orderCode = cartObj[i].orderCode;
+                            let quantity = cartObj[i].quantity;
+                            $('#ordersTable').append("<tr><td>" + orderCode + "</td>" + "<td>" + productName + "</td>" + "<td>" + quantity + "</td><tr>");
+                        }
+                        console.log(data);
+          });
+        }
+</script>
+
+
+
+        <div id="orders">
+           <h1>Enter OrderCode<h1></h1><input type="text" id="orderCodeText" name="orderCodeText">
+               <button onclick="search()">Search</button>
+
+
+
+               <table id="ordersTable">
+                   <th>OrderCode</th>
+                   <th>Product</th>
+                   <th>Quantity</th>
+               </table>
+        </div>
     </div>
-
-
 
 
 <footer>

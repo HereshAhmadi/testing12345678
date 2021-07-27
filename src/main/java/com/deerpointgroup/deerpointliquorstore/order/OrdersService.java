@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrdersService {
@@ -30,8 +31,8 @@ public class OrdersService {
         }
     }
 
-    public boolean verifyOrder(String orderCode){
-        return ordersRepository.findOrdersByOrderCode(orderCode).isPresent();
+    public Optional<Orders> verifyOrder(String orderCode){
+        return ordersRepository.findOrdersByOrderCode(orderCode);
     }
 
     public List<Orders> getAllOrders(){
