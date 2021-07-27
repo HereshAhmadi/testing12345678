@@ -1,0 +1,26 @@
+<div class="top">
+    <script>
+$.get("/api/user/username", function(data) {
+    if (data && data.length < 100) {
+        $("#username").append('<a href="profile">' + data + '</a>');
+        $("#login").remove();
+        $("#register").remove();
+        $(".menu").append('<a href="/logout" id="logout">Logout</a>');
+    } else {
+        $("#logout").remove();
+        $("#cart").remove();
+    }
+    console.log(data);
+});
+    </script>
+<span class="menu">
+<a href="index">Home</a>
+<a href="about">About</a>
+<a href="products">Products</a>
+<a href="/api/cart/cartListByUser" id="cart">Cart</a>
+
+<a href="login" id="login">Log in</a>
+<a href="register" id="register">Sign up</a>
+<span id="username"></span>
+</span>
+</div>
